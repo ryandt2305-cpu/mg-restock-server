@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "poll": "node scripts/poll.mjs"
+    "poll": "node scripts/poll.mjs",
+    "import:html": "node scripts/import-html.mjs"
   },
   "dependencies": {
     "node-fetch": "^3.3.2"

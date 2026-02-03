@@ -1,0 +1,12 @@
+# dependencies
+node_modules/
+
+# local examples
+restock examples/
+
+# local cache
+*.log
+.DS_Store
+
+# keep data + scripts + workflow + package files tracked
+

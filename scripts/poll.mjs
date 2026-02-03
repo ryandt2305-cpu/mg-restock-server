@@ -14,7 +14,10 @@ const META_FILE = path.join(DATA_DIR, "meta.json");
 
 const SHOP_TYPES = ["seed", "egg", "decor"];
 const MAX_RECENT_TIMESTAMPS = 50;
-const MAX_EVENTS = 2000;
+const MAX_EVENTS = 100000;
+const HISTORY_SEED_FILE = path.join(DATA_DIR, "history-seed.json");
+const HISTORY_EGG_FILE = path.join(DATA_DIR, "history-egg.json");
+const HISTORY_DECOR_FILE = path.join(DATA_DIR, "history-decor.json");
 
 function readJson(file, fallback) {
   try {
@@ -116,6 +119,18 @@ function updateHistory(history, event) {
   }
 }
 
+function splitHistoryByShop(history) {
+  const seed = {};
+  const egg = {};
+  const decor = {};
+  for (const [key, value] of Object.entries(history)) {
+    if (value.shopType === "seed") seed[key] = value;
+    else if (value.shopType === "egg") egg[key] = value;
+    else if (value.shopType === "decor") decor[key] = value;
+  }
+  return { seed, egg, decor };
+}
+
 async function main() {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 
@@ -156,6 +171,10 @@ async function main() {
 
   writeJson(SNAPSHOT_FILE, nextSnapshot);
   writeJson(HISTORY_FILE, history);
+  const split = splitHistoryByShop(history);
+  writeJson(HISTORY_SEED_FILE, split.seed);
+  writeJson(HISTORY_EGG_FILE, split.egg);
+  writeJson(HISTORY_DECOR_FILE, split.decor);
   writeJson(EVENTS_FILE, events);
   writeJson(META_FILE, {
     lastUpdated: timestamp,
