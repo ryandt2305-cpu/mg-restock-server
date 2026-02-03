@@ -7,18 +7,50 @@ const API_URL = "https://mg-api.ariedam.fr/live/shops";
 
 const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, "data");
+const MGDATA_PATH = path.join(ROOT, "data", "mgdata.json");
 const SNAPSHOT_FILE = path.join(DATA_DIR, "snapshot.json");
 const HISTORY_FILE = path.join(DATA_DIR, "history.json");
 const EVENTS_FILE = path.join(DATA_DIR, "events.json");
 const META_FILE = path.join(DATA_DIR, "meta.json");
 
 const SHOP_TYPES = ["seed", "egg", "decor"];
+const SHOP_INTERVALS_SEC = {
+  seed: 300,
+  egg: 900,
+  decor: 3600,
+};
 const MAX_RECENT_TIMESTAMPS = 50;
 const MAX_EVENTS = 100000;
 const HISTORY_SEED_FILE = path.join(DATA_DIR, "history-seed.json");
 const HISTORY_EGG_FILE = path.join(DATA_DIR, "history-egg.json");
 const HISTORY_DECOR_FILE = path.join(DATA_DIR, "history-decor.json");
 
+
+function toNameSet(value) {
+  if (!value || typeof value !== "object") return null;
+  if (Array.isArray(value)) return new Set(value.map((v) => String(v)));
+  return new Set(Object.keys(value));
+}
+
+function loadMgData() {
+  const mg = readJson(MGDATA_PATH, null);
+  if (!mg || typeof mg !== "object") return null;
+  const seed = mg.seed && typeof mg.seed === "object" ? mg.seed : {};
+  const egg = mg.egg && typeof mg.egg === "object" ? mg.egg : {};
+  const decor = mg.decor && typeof mg.decor === "object" ? mg.decor : {};
+  return {
+    seed: toNameSet(seed),
+    egg: toNameSet(egg),
+    decor: toNameSet(decor),
+  };
+}
+
+function validateItems(shopType, items, mgSets) {
+  if (!mgSets) return items;
+  const set = shopType === "seed" ? mgSets.seed : shopType === "egg" ? mgSets.egg : mgSets.decor;
+  if (!set || set.size === 0) return items;
+  return items.filter((item) => set.has(item.name));
+}
 function readJson(file, fallback) {
   try {
     if (!fs.existsSync(file)) return fallback;
@@ -48,6 +80,7 @@ function normalizeSnapshot(snapshot) {
     const items = Array.isArray(shop?.items) ? shop.items : [];
     out[shopType] = {
       secondsUntilRestock: typeof shop?.secondsUntilRestock === "number" ? shop.secondsUntilRestock : 0,
+      lastRestockAt: typeof shop?.lastRestockAt === "number" ? shop.lastRestockAt : null,
       items: items.map((item) => ({
         name: String(item?.name ?? ""),
         stock: typeof item?.stock === "number" ? item.stock : 0,
@@ -66,12 +99,19 @@ function indexItems(items) {
   return map;
 }
 
-function detectRestock(prev, next) {
+function detectRestock(prev, next, shopType) {
   if (!prev) return true;
-  const prevSec = prev.secondsUntilRestock ?? 0;
-  const nextSec = next.secondsUntilRestock ?? 0;
-  if (prevSec > 0 && nextSec > prevSec) return true;
+  const prevSec = typeof prev.secondsUntilRestock === "number" ? prev.secondsUntilRestock : 0;
+  const nextSec = typeof next.secondsUntilRestock === "number" ? next.secondsUntilRestock : 0;
+  if (prevSec > 0 && nextSec > prevSec + 30) return true;
   if (prevSec > 0 && nextSec === 0) return true;
+  if (prevSec <= 5 && nextSec > prevSec) return true;
+
+  const intervalSec = SHOP_INTERVALS_SEC[shopType] ?? null;
+  if (intervalSec && prev.lastRestockAt && typeof prev.lastRestockAt === "number") {
+    const since = Date.now() - prev.lastRestockAt;
+    if (since >= intervalSec * 1000 && nextSec > prevSec) return true;
+  }
   return false;
 }
 
@@ -144,21 +184,29 @@ async function main() {
     throw new Error(`Failed to fetch live shops: ${res.status}`);
   }
   const live = await res.json();
+  const mgSets = loadMgData();
   const nextSnapshot = normalizeSnapshot(live);
+  if (!mgSets || (!mgSets.seed && !mgSets.egg && !mgSets.decor)) {
+    console.warn("MGDATA validation disabled or empty; skipping item validation.");
+  }
 
   const timestamp = nowMs();
 
   for (const shopType of SHOP_TYPES) {
     const prevShop = prevSnapshot?.[shopType] ?? null;
     const nextShop = nextSnapshot[shopType];
-    const restockByTimer = detectRestock(prevShop, nextShop);
+    const restockByTimer = detectRestock(prevShop, nextShop, shopType);
     const restockByItems = itemsChanged(prevShop?.items ?? [], nextShop.items);
 
     if (restockByTimer || restockByItems) {
+      const validatedItems = validateItems(shopType, nextShop.items, mgSets);
+      if (mgSets && validatedItems.length === 0 && nextShop.items.length > 0) {
+        continue;
+      }
       const event = {
         shopType,
         timestamp,
-        items: nextShop.items.map((item) => ({
+        items: validatedItems.map((item) => ({
           itemId: item.name,
           stock: item.stock,
         })),
@@ -166,6 +214,12 @@ async function main() {
       };
       pushEvent(events, event);
       updateHistory(history, event);
+      nextSnapshot[shopType].lastRestockAt = timestamp;
+    } else if (prevShop?.lastRestockAt) {
+      nextSnapshot[shopType].lastRestockAt = prevShop.lastRestockAt;
+    }
+    if (!nextSnapshot[shopType].lastRestockAt) {
+      nextSnapshot[shopType].lastRestockAt = timestamp;
     }
   }
 
