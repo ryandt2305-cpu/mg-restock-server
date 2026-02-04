@@ -1,6 +1,147 @@
 [
   {
     "shopType": "decor",
+    "timestamp": 1770231806917,
+    "items": [
+      {
+        "itemId": "SmallRock",
+        "stock": 4
+      },
+      {
+        "itemId": "MediumRock",
+        "stock": 2
+      },
+      {
+        "itemId": "StringLights",
+        "stock": 2
+      },
+      {
+        "itemId": "WoodBench",
+        "stock": 2
+      },
+      {
+        "itemId": "WoodArch",
+        "stock": 2
+      },
+      {
+        "itemId": "WoodBridge",
+        "stock": 2
+      },
+      {
+        "itemId": "StoneBench",
+        "stock": 2
+      },
+      {
+        "itemId": "StoneArch",
+        "stock": 2
+      },
+      {
+        "itemId": "StoneBridge",
+        "stock": 2
+      },
+      {
+        "itemId": "MarbleArch",
+        "stock": 1
+      },
+      {
+        "itemId": "MarbleBridge",
+        "stock": 1
+      },
+      {
+        "itemId": "MarbleBlobling",
+        "stock": 1
+      },
+      {
+        "itemId": "PetHutch",
+        "stock": 1
+      },
+      {
+        "itemId": "DecorShed",
+        "stock": 1
+      },
+      {
+        "itemId": "SeedSilo",
+        "stock": 1
+      }
+    ],
+    "reason": "items"
+  },
+  {
+    "shopType": "egg",
+    "timestamp": 1770231806917,
+    "items": [
+      {
+        "itemId": "CommonEgg",
+        "stock": 3
+      }
+    ],
+    "reason": "items"
+  },
+  {
+    "shopType": "seed",
+    "timestamp": 1770231806917,
+    "items": [
+      {
+        "itemId": "Carrot",
+        "stock": 16
+      },
+      {
+        "itemId": "Cabbage",
+        "stock": 3
+      },
+      {
+        "itemId": "Strawberry",
+        "stock": 3
+      },
+      {
+        "itemId": "Aloe",
+        "stock": 4
+      },
+      {
+        "itemId": "Beet",
+        "stock": 8
+      },
+      {
+        "itemId": "FavaBean",
+        "stock": 2
+      },
+      {
+        "itemId": "Blueberry",
+        "stock": 3
+      },
+      {
+        "itemId": "Apple",
+        "stock": 1
+      },
+      {
+        "itemId": "Corn",
+        "stock": 3
+      },
+      {
+        "itemId": "Watermelon",
+        "stock": 2
+      },
+      {
+        "itemId": "Echeveria",
+        "stock": 1
+      },
+      {
+        "itemId": "Pear",
+        "stock": 2
+      },
+      {
+        "itemId": "Lily",
+        "stock": 1
+      },
+      {
+        "itemId": "VioletCort",
+        "stock": 3
+      }
+    ],
+    "reason": "items"
+  },
+  {
+    "shopType": "decor",
     "timestamp": 1770228083397,
     "items": [
       {
