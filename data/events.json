@@ -1,6 +1,127 @@
 [
   {
     "shopType": "decor",
+    "timestamp": 1770882086976,
+    "items": [
+      {
+        "itemId": "SmallRock",
+        "stock": 3
+      },
+      {
+        "itemId": "MediumRock",
+        "stock": 2
+      },
+      {
+        "itemId": "WoodBench",
+        "stock": 2
+      },
+      {
+        "itemId": "WoodArch",
+        "stock": 2
+      },
+      {
+        "itemId": "WoodBridge",
+        "stock": 2
+      },
+      {
+        "itemId": "WoodLampPost",
+        "stock": 1
+      },
+      {
+        "itemId": "StoneBench",
+        "stock": 2
+      },
+      {
+        "itemId": "StoneArch",
+        "stock": 2
+      },
+      {
+        "itemId": "PetHutch",
+        "stock": 1
+      },
+      {
+        "itemId": "DecorShed",
+        "stock": 1
+      },
+      {
+        "itemId": "SeedSilo",
+        "stock": 1
+      }
+    ],
+    "reason": "timer"
+  },
+  {
+    "shopType": "egg",
+    "timestamp": 1770882086976,
+    "items": [
+      {
+        "itemId": "CommonEgg",
+        "stock": 3
+      }
+    ],
+    "reason": "timer"
+  },
+  {
+    "shopType": "seed",
+    "timestamp": 1770882086976,
+    "items": [
+      {
+        "itemId": "Carrot",
+        "stock": 20
+      },
+      {
+        "itemId": "Cabbage",
+        "stock": 3
+      },
+      {
+        "itemId": "Strawberry",
+        "stock": 1
+      },
+      {
+        "itemId": "Aloe",
+        "stock": 4
+      },
+      {
+        "itemId": "Beet",
+        "stock": 5
+      },
+      {
+        "itemId": "FavaBean",
+        "stock": 4
+      },
+      {
+        "itemId": "Blueberry",
+        "stock": 2
+      },
+      {
+        "itemId": "Tomato",
+        "stock": 1
+      },
+      {
+        "itemId": "Daffodil",
+        "stock": 3
+      },
+      {
+        "itemId": "Echeveria",
+        "stock": 1
+      },
+      {
+        "itemId": "Banana",
+        "stock": 1
+      },
+      {
+        "itemId": "Camellia",
+        "stock": 1
+      },
+      {
+        "itemId": "BurrosTail",
+        "stock": 2
+      }
+    ],
+    "reason": "timer"
+  },
+  {
+    "shopType": "decor",
     "timestamp": 1770878698930,
     "items": [
       {
