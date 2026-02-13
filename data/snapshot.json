@@ -1,11 +1,11 @@
 {
   "seed": {
-    "secondsUntilRestock": 283,
-    "lastRestockAt": 1771019417897,
+    "secondsUntilRestock": 299,
+    "lastRestockAt": 1771021201954,
     "items": [
       {
         "name": "Carrot",
-        "stock": 9
+        "stock": 11
       },
       {
         "name": "Cabbage",
@@ -13,71 +13,59 @@
       },
       {
         "name": "Strawberry",
-        "stock": 5
+        "stock": 1
       },
       {
         "name": "Aloe",
-        "stock": 7
+        "stock": 4
       },
       {
         "name": "Beet",
-        "stock": 7
+        "stock": 9
       },
       {
         "name": "FavaBean",
         "stock": 4
       },
       {
+        "name": "Blueberry",
+        "stock": 2
+      },
+      {
         "name": "Apple",
-        "stock": 1
+        "stock": 2
       },
       {
         "name": "Tomato",
         "stock": 2
       },
       {
-        "name": "Banana",
-        "stock": 1
-      },
-      {
-        "name": "Lily",
-        "stock": 3
-      },
-      {
         "name": "Camellia",
         "stock": 1
-      },
-      {
-        "name": "VioletCort",
-        "stock": 3
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 583,
-    "lastRestockAt": 1771019417897,
+    "secondsUntilRestock": 599,
+    "lastRestockAt": 1771021201954,
     "items": [
       {
         "name": "CommonEgg",
-        "stock": 3
+        "stock": 2
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 583,
-    "lastRestockAt": 1771016756175,
+    "secondsUntilRestock": 2399,
+    "lastRestockAt": 1771021201954,
     "items": [
       {
         "name": "SmallRock",
-        "stock": 5
+        "stock": 4
       },
       {
         "name": "MediumRock",
         "stock": 2
-      },
-      {
-        "name": "HayBale",
-        "stock": 1
       },
       {
         "name": "StringLights",
@@ -92,7 +80,7 @@
         "stock": 2
       },
       {
-        "name": "WoodBridge",
+        "name": "WoodPergola",
         "stock": 2
       },
       {
@@ -101,6 +89,10 @@
       },
       {
         "name": "StoneArch",
+        "stock": 2
+      },
+      {
+        "name": "StoneBridge",
         "stock": 2
       },
       {
