@@ -1,11 +1,11 @@
 {
   "seed": {
-    "secondsUntilRestock": 241,
-    "lastRestockAt": 1771144560231,
+    "secondsUntilRestock": 134,
+    "lastRestockAt": 1771146167434,
     "items": [
       {
         "name": "Carrot",
-        "stock": 5
+        "stock": 17
       },
       {
         "name": "Cabbage",
@@ -13,47 +13,63 @@
       },
       {
         "name": "Strawberry",
-        "stock": 6
+        "stock": 3
       },
       {
         "name": "Aloe",
-        "stock": 8
+        "stock": 3
       },
       {
         "name": "Beet",
-        "stock": 7
+        "stock": 6
       },
       {
-        "name": "Apple",
-        "stock": 1
+        "name": "Blueberry",
+        "stock": 4
       },
       {
         "name": "Tomato",
         "stock": 2
       },
       {
-        "name": "Echeveria",
+        "name": "Lily",
+        "stock": 3
+      },
+      {
+        "name": "BurrosTail",
         "stock": 2
       },
       {
-        "name": "Lily",
-        "stock": 2
+        "name": "VioletCort",
+        "stock": 6
+      },
+      {
+        "name": "Grape",
+        "stock": 1
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 541,
-    "lastRestockAt": 1771144560231,
+    "secondsUntilRestock": 734,
+    "lastRestockAt": 1771146167434,
     "items": [
       {
         "name": "CommonEgg",
-        "stock": 2
+        "stock": 1
+      },
+      {
+        "name": "UncommonEgg",
+        "stock": 1
+      },
+      {
+        "name": "RareEgg",
+        "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 1441,
-    "lastRestockAt": 1771144560231,
+    "secondsUntilRestock": 3434,
+    "lastRestockAt": 1771146167434,
     "items": [
       {
         "name": "SmallRock",
@@ -61,10 +77,6 @@
       },
       {
         "name": "MediumRock",
-        "stock": 3
-      },
-      {
-        "name": "HayBale",
         "stock": 2
       },
       {
@@ -86,14 +98,6 @@
       {
         "name": "StoneArch",
         "stock": 2
-      },
-      {
-        "name": "StoneLampPost",
-        "stock": 1
-      },
-      {
-        "name": "MarbleArch",
-        "stock": 1
       },
       {
         "name": "PetHutch",
