@@ -1,11 +1,11 @@
 {
   "seed": {
-    "secondsUntilRestock": 252,
-    "lastRestockAt": 1771563948820,
+    "secondsUntilRestock": 151,
+    "lastRestockAt": 1771567650371,
     "items": [
       {
         "name": "Carrot",
-        "stock": 11
+        "stock": 18
       },
       {
         "name": "Cabbage",
@@ -13,70 +13,90 @@
       },
       {
         "name": "Strawberry",
-        "stock": 1
+        "stock": 6
       },
       {
         "name": "Aloe",
-        "stock": 3
+        "stock": 7
       },
       {
         "name": "Beet",
-        "stock": 9
+        "stock": 7
       },
       {
-        "name": "FavaBean",
-        "stock": 3
+        "name": "Rose",
+        "stock": 1
+      },
+      {
+        "name": "Blueberry",
+        "stock": 4
       },
       {
         "name": "Apple",
         "stock": 1
       },
       {
+        "name": "OrangeTulip",
+        "stock": 23
+      },
+      {
         "name": "Tomato",
-        "stock": 2
+        "stock": 3
+      },
+      {
+        "name": "Corn",
+        "stock": 5
+      },
+      {
+        "name": "Echeveria",
+        "stock": 1
       },
       {
         "name": "Gentian",
+        "stock": 3
+      },
+      {
+        "name": "Lily",
         "stock": 2
       },
       {
         "name": "BurrosTail",
-        "stock": 3
+        "stock": 2
       },
       {
-        "name": "Lemon",
-        "stock": 1
+        "name": "Cacao",
+        "stock": 2
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 552,
-    "lastRestockAt": 1771563948820,
+    "secondsUntilRestock": 451,
+    "lastRestockAt": 1771567650371,
     "items": [
       {
         "name": "CommonEgg",
-        "stock": 3
+        "stock": 2
       },
       {
-        "name": "LegendaryEgg",
+        "name": "RareEgg",
+        "stock": 1
+      },
+      {
+        "name": "HorseEgg",
         "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 3252,
-    "lastRestockAt": 1771563948820,
+    "secondsUntilRestock": 3151,
+    "lastRestockAt": 1771567650371,
     "items": [
       {
         "name": "SmallRock",
-        "stock": 4
+        "stock": 5
       },
       {
         "name": "MediumRock",
-        "stock": 3
-      },
-      {
-        "name": "HayBale",
         "stock": 2
       },
       {
@@ -92,10 +112,6 @@
         "stock": 2
       },
       {
-        "name": "WoodPergola",
-        "stock": 2
-      },
-      {
         "name": "StoneBench",
         "stock": 2
       },
@@ -104,15 +120,11 @@
         "stock": 2
       },
       {
-        "name": "MarbleBench",
+        "name": "StoneLampPost",
         "stock": 1
       },
       {
-        "name": "MarbleArch",
-        "stock": 1
-      },
-      {
-        "name": "MarbleBlobling",
+        "name": "MarbleBridge",
         "stock": 1
       },
       {
