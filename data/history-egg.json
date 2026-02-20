@@ -486,11 +486,10 @@
   "egg:CommonEgg": {
     "itemId": "CommonEgg",
     "shopType": "egg",
-    "totalOccurrences": 473,
+    "totalOccurrences": 474,
     "firstSeen": 1770105624507,
-    "lastSeen": 1771588880612,
+    "lastSeen": 1771593639962,
     "recentTimestamps": [
-      1771415622396,
       1771419442191,
       1771423768287,
       1771427072040,
@@ -539,17 +538,17 @@
       1771580146873,
       1771582803305,
       1771585253192,
-      1771588880612
+      1771588880612,
+      1771593639962
     ]
   },
   "egg:UncommonEgg": {
     "itemId": "UncommonEgg",
     "shopType": "egg",
-    "totalOccurrences": 189,
+    "totalOccurrences": 190,
     "firstSeen": 1770108761663,
-    "lastSeen": 1771580146873,
+    "lastSeen": 1771593639962,
     "recentTimestamps": [
-      1771194714329,
       1771207547855,
       1771257430318,
       1771265147018,
@@ -598,17 +597,17 @@
       1771558249881,
       1771574279898,
       1771577592311,
-      1771580146873
+      1771580146873,
+      1771593639962
     ]
   },
   "egg:RareEgg": {
     "itemId": "RareEgg",
     "shopType": "egg",
-    "totalOccurrences": 169,
+    "totalOccurrences": 170,
     "firstSeen": 1770116862608,
-    "lastSeen": 1771580146873,
+    "lastSeen": 1771593639962,
     "recentTimestamps": [
-      1771146167434,
       1771149642583,
       1771153221373,
       1771156280529,
@@ -657,7 +656,8 @@
       1771542921294,
       1771544880183,
       1771567650371,
-      1771580146873
+      1771580146873,
+      1771593639962
     ]
   },
   "egg:SnowEgg": {
@@ -686,9 +686,9 @@
   "egg:LegendaryEgg": {
     "itemId": "LegendaryEgg",
     "shopType": "egg",
-    "totalOccurrences": 44,
+    "totalOccurrences": 45,
     "firstSeen": 1770173011888,
-    "lastSeen": 1771563948820,
+    "lastSeen": 1771593639962,
     "recentTimestamps": [
       1770173011888,
       1770185446036,
@@ -733,7 +733,8 @@
       1771496693545,
       1771517018501,
       1771520928209,
-      1771563948820
+      1771563948820,
+      1771593639962
     ]
   },
   "egg:MythicalEgg": {
