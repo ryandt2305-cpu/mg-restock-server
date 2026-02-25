@@ -1,6 +1,147 @@
 [
   {
     "shopType": "decor",
+    "timestamp": 1772061390200,
+    "items": [
+      {
+        "itemId": "SmallRock",
+        "stock": 5
+      },
+      {
+        "itemId": "MediumRock",
+        "stock": 3
+      },
+      {
+        "itemId": "LargeRock",
+        "stock": 1
+      },
+      {
+        "itemId": "HayBale",
+        "stock": 1
+      },
+      {
+        "itemId": "StringLights",
+        "stock": 2
+      },
+      {
+        "itemId": "WoodBench",
+        "stock": 2
+      },
+      {
+        "itemId": "WoodArch",
+        "stock": 2
+      },
+      {
+        "itemId": "WoodBridge",
+        "stock": 2
+      },
+      {
+        "itemId": "WoodLampPost",
+        "stock": 1
+      },
+      {
+        "itemId": "WoodWindmill",
+        "stock": 1
+      },
+      {
+        "itemId": "StoneBench",
+        "stock": 2
+      },
+      {
+        "itemId": "StoneArch",
+        "stock": 2
+      },
+      {
+        "itemId": "MarbleArch",
+        "stock": 1
+      },
+      {
+        "itemId": "DecorShed",
+        "stock": 1
+      },
+      {
+        "itemId": "PetHutch",
+        "stock": 1
+      },
+      {
+        "itemId": "SeedSilo",
+        "stock": 1
+      }
+    ],
+    "reason": "timer"
+  },
+  {
+    "shopType": "egg",
+    "timestamp": 1772061390200,
+    "items": [
+      {
+        "itemId": "CommonEgg",
+        "stock": 2
+      },
+      {
+        "itemId": "UncommonEgg",
+        "stock": 1
+      }
+    ],
+    "reason": "items"
+  },
+  {
+    "shopType": "seed",
+    "timestamp": 1772061390200,
+    "items": [
+      {
+        "itemId": "Carrot",
+        "stock": 15
+      },
+      {
+        "itemId": "Cabbage",
+        "stock": 2
+      },
+      {
+        "itemId": "Strawberry",
+        "stock": 2
+      },
+      {
+        "itemId": "Aloe",
+        "stock": 8
+      },
+      {
+        "itemId": "Beet",
+        "stock": 9
+      },
+      {
+        "itemId": "FavaBean",
+        "stock": 3
+      },
+      {
+        "itemId": "Blueberry",
+        "stock": 3
+      },
+      {
+        "itemId": "Apple",
+        "stock": 1
+      },
+      {
+        "itemId": "Echeveria",
+        "stock": 1
+      },
+      {
+        "itemId": "Pear",
+        "stock": 2
+      },
+      {
+        "itemId": "Lily",
+        "stock": 2
+      },
+      {
+        "itemId": "BurrosTail",
+        "stock": 2
+      }
+    ],
+    "reason": "items"
+  },
+  {
+    "shopType": "decor",
     "timestamp": 1772059513323,
     "items": [
       {
