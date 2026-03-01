@@ -1,11 +1,11 @@
 {
   "seed": {
-    "secondsUntilRestock": 129,
-    "lastRestockAt": 1772365971555,
+    "secondsUntilRestock": 261,
+    "lastRestockAt": 1772368540111,
     "items": [
       {
         "name": "Carrot",
-        "stock": 18
+        "stock": 19
       },
       {
         "name": "Cabbage",
@@ -13,11 +13,11 @@
       },
       {
         "name": "Strawberry",
-        "stock": 4
+        "stock": 3
       },
       {
         "name": "Aloe",
-        "stock": 3
+        "stock": 4
       },
       {
         "name": "Beet",
@@ -32,11 +32,15 @@
         "stock": 5
       },
       {
-        "name": "Lily",
-        "stock": 3
+        "name": "Tomato",
+        "stock": 1
       },
       {
-        "name": "Camellia",
+        "name": "Echeveria",
+        "stock": 1
+      },
+      {
+        "name": "Lily",
         "stock": 1
       },
       {
@@ -46,8 +50,8 @@
     ]
   },
   "egg": {
-    "secondsUntilRestock": 429,
-    "lastRestockAt": 1772365971555,
+    "secondsUntilRestock": 561,
+    "lastRestockAt": 1772368540111,
     "items": [
       {
         "name": "CommonEgg",
@@ -56,24 +60,16 @@
     ]
   },
   "decor": {
-    "secondsUntilRestock": 429,
-    "lastRestockAt": 1772363924725,
+    "secondsUntilRestock": 1461,
+    "lastRestockAt": 1772368540111,
     "items": [
       {
         "name": "SmallRock",
-        "stock": 5
+        "stock": 4
       },
       {
         "name": "MediumRock",
         "stock": 3
-      },
-      {
-        "name": "HayBale",
-        "stock": 2
-      },
-      {
-        "name": "StringLights",
-        "stock": 2
       },
       {
         "name": "WoodBench",
