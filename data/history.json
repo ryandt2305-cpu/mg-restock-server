@@ -144,11 +144,10 @@
   "seed:Mushroom": {
     "itemId": "Mushroom",
     "shopType": "seed",
-    "totalOccurrences": 2407,
+    "totalOccurrences": 2408,
     "firstSeen": 1752079800000,
-    "lastSeen": 1772517704865,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1771234907704,
       1771268509825,
       1771307358557,
       1771316850710,
@@ -197,17 +196,17 @@
       1772469308308,
       1772478502486,
       1772492359226,
-      1772517704865
+      1772517704865,
+      1772525210622
     ]
   },
   "seed:Bamboo": {
     "itemId": "Bamboo",
     "shopType": "seed",
-    "totalOccurrences": 1601,
+    "totalOccurrences": 1602,
     "firstSeen": 1752081300000,
-    "lastSeen": 1772488870234,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1757574600000,
       1770212560741,
       1770215409068,
       1770400380129,
@@ -256,7 +255,8 @@
       1772404424788,
       1772451568455,
       1772473543474,
-      1772488870234
+      1772488870234,
+      1772525210622
     ]
   },
   "seed:Banana": {
@@ -3262,11 +3262,10 @@
   "seed:Echeveria": {
     "itemId": "Echeveria",
     "shopType": "seed",
-    "totalOccurrences": 2556,
+    "totalOccurrences": 2557,
     "firstSeen": 1755467100000,
-    "lastSeen": 1772517704865,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772297734965,
       1772299291157,
       1772303339693,
       1772307774798,
@@ -3315,7 +3314,8 @@
       1772494064018,
       1772507423532,
       1772516273188,
-      1772517704865
+      1772517704865,
+      1772525210622
     ]
   },
   "seed:Burro's Tail": {
@@ -6471,11 +6471,10 @@
   "seed:Carrot": {
     "itemId": "Carrot",
     "shopType": "seed",
-    "totalOccurrences": 899,
+    "totalOccurrences": 900,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772524369883,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772455852264,
       1772457729074,
       1772459277863,
       1772460617728,
@@ -6524,17 +6523,17 @@
       1772520678247,
       1772522015063,
       1772523176159,
-      1772524369883
+      1772524369883,
+      1772525210622
     ]
   },
   "seed:Cabbage": {
     "itemId": "Cabbage",
     "shopType": "seed",
-    "totalOccurrences": 899,
+    "totalOccurrences": 900,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772524369883,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772455852264,
       1772457729074,
       1772459277863,
       1772460617728,
@@ -6583,17 +6582,17 @@
       1772520678247,
       1772522015063,
       1772523176159,
-      1772524369883
+      1772524369883,
+      1772525210622
     ]
   },
   "seed:Strawberry": {
     "itemId": "Strawberry",
     "shopType": "seed",
-    "totalOccurrences": 899,
+    "totalOccurrences": 900,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772524369883,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772455852264,
       1772457729074,
       1772459277863,
       1772460617728,
@@ -6642,17 +6641,17 @@
       1772520678247,
       1772522015063,
       1772523176159,
-      1772524369883
+      1772524369883,
+      1772525210622
     ]
   },
   "seed:Aloe": {
     "itemId": "Aloe",
     "shopType": "seed",
-    "totalOccurrences": 899,
+    "totalOccurrences": 900,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772524369883,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772455852264,
       1772457729074,
       1772459277863,
       1772460617728,
@@ -6701,17 +6700,17 @@
       1772520678247,
       1772522015063,
       1772523176159,
-      1772524369883
+      1772524369883,
+      1772525210622
     ]
   },
   "seed:Beet": {
     "itemId": "Beet",
     "shopType": "seed",
-    "totalOccurrences": 899,
+    "totalOccurrences": 900,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772524369883,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772455852264,
       1772457729074,
       1772459277863,
       1772460617728,
@@ -6760,17 +6759,17 @@
       1772520678247,
       1772522015063,
       1772523176159,
-      1772524369883
+      1772524369883,
+      1772525210622
     ]
   },
   "seed:FavaBean": {
     "itemId": "FavaBean",
     "shopType": "seed",
-    "totalOccurrences": 676,
+    "totalOccurrences": 677,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772524369883,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772439987795,
       1772442488698,
       1772443871934,
       1772445358139,
@@ -6819,17 +6818,17 @@
       1772517704865,
       1772519257514,
       1772522015063,
-      1772524369883
+      1772524369883,
+      1772525210622
     ]
   },
   "seed:Blueberry": {
     "itemId": "Blueberry",
     "shopType": "seed",
-    "totalOccurrences": 688,
+    "totalOccurrences": 689,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772523176159,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772433139345,
       1772434682864,
       1772437901268,
       1772438779894,
@@ -6878,17 +6877,17 @@
       1772516273188,
       1772517704865,
       1772520678247,
-      1772523176159
+      1772523176159,
+      1772525210622
     ]
   },
   "seed:Apple": {
     "itemId": "Apple",
     "shopType": "seed",
-    "totalOccurrences": 460,
+    "totalOccurrences": 461,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772522015063,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772365124689,
       1772373326407,
       1772376569028,
       1772380294520,
@@ -6937,7 +6936,8 @@
       1772516273188,
       1772519257514,
       1772520678247,
-      1772522015063
+      1772522015063,
+      1772525210622
     ]
   },
   "seed:OrangeTulip": {
@@ -7120,11 +7120,10 @@
   "seed:Camellia": {
     "itemId": "Camellia",
     "shopType": "seed",
-    "totalOccurrences": 448,
+    "totalOccurrences": 449,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772524369883,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772389571836,
       1772397259496,
       1772398501489,
       1772400219954,
@@ -7173,7 +7172,8 @@
       1772517704865,
       1772519257514,
       1772523176159,
-      1772524369883
+      1772524369883,
+      1772525210622
     ]
   },
   "seed:BurrosTail": {
@@ -7238,11 +7238,10 @@
   "egg:CommonEgg": {
     "itemId": "CommonEgg",
     "shopType": "egg",
-    "totalOccurrences": 860,
+    "totalOccurrences": 861,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772524369883,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772452429228,
       1772453348227,
       1772454412829,
       1772455852264,
@@ -7291,17 +7290,17 @@
       1772520678247,
       1772522015063,
       1772523176159,
-      1772524369883
+      1772524369883,
+      1772525210622
     ]
   },
   "decor:SmallRock": {
     "itemId": "SmallRock",
     "shopType": "decor",
-    "totalOccurrences": 580,
+    "totalOccurrences": 581,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772522015063,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772343438217,
       1772346393725,
       1772348978724,
       1772352049440,
@@ -7350,17 +7349,17 @@
       1772510459724,
       1772514839517,
       1772517704865,
-      1772522015063
+      1772522015063,
+      1772525210622
     ]
   },
   "decor:MediumRock": {
     "itemId": "MediumRock",
     "shopType": "decor",
-    "totalOccurrences": 580,
+    "totalOccurrences": 581,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772522015063,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772343438217,
       1772346393725,
       1772348978724,
       1772352049440,
@@ -7409,17 +7408,17 @@
       1772510459724,
       1772514839517,
       1772517704865,
-      1772522015063
+      1772522015063,
+      1772525210622
     ]
   },
   "decor:StringLights": {
     "itemId": "StringLights",
     "shopType": "decor",
-    "totalOccurrences": 437,
+    "totalOccurrences": 438,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772522015063,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772288447552,
       1772292636427,
       1772296627339,
       1772303339693,
@@ -7468,17 +7467,17 @@
       1772510459724,
       1772514839517,
       1772517704865,
-      1772522015063
+      1772522015063,
+      1772525210622
     ]
   },
   "decor:WoodBench": {
     "itemId": "WoodBench",
     "shopType": "decor",
-    "totalOccurrences": 580,
+    "totalOccurrences": 581,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772522015063,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772343438217,
       1772346393725,
       1772348978724,
       1772352049440,
@@ -7527,17 +7526,17 @@
       1772510459724,
       1772514839517,
       1772517704865,
-      1772522015063
+      1772522015063,
+      1772525210622
     ]
   },
   "decor:WoodArch": {
     "itemId": "WoodArch",
     "shopType": "decor",
-    "totalOccurrences": 580,
+    "totalOccurrences": 581,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772522015063,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772343438217,
       1772346393725,
       1772348978724,
       1772352049440,
@@ -7586,7 +7585,8 @@
       1772510459724,
       1772514839517,
       1772517704865,
-      1772522015063
+      1772522015063,
+      1772525210622
     ]
   },
   "decor:WoodWindmill": {
@@ -7625,11 +7625,10 @@
   "decor:StoneBench": {
     "itemId": "StoneBench",
     "shopType": "decor",
-    "totalOccurrences": 580,
+    "totalOccurrences": 581,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772522015063,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772343438217,
       1772346393725,
       1772348978724,
       1772352049440,
@@ -7678,17 +7677,17 @@
       1772510459724,
       1772514839517,
       1772517704865,
-      1772522015063
+      1772522015063,
+      1772525210622
     ]
   },
   "decor:StoneArch": {
     "itemId": "StoneArch",
     "shopType": "decor",
-    "totalOccurrences": 580,
+    "totalOccurrences": 581,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772522015063,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772343438217,
       1772346393725,
       1772348978724,
       1772352049440,
@@ -7737,7 +7736,8 @@
       1772510459724,
       1772514839517,
       1772517704865,
-      1772522015063
+      1772522015063,
+      1772525210622
     ]
   },
   "decor:MarbleBench": {
@@ -7802,11 +7802,10 @@
   "decor:PetHutch": {
     "itemId": "PetHutch",
     "shopType": "decor",
-    "totalOccurrences": 580,
+    "totalOccurrences": 581,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772522015063,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772343438217,
       1772346393725,
       1772348978724,
       1772352049440,
@@ -7855,17 +7854,17 @@
       1772510459724,
       1772514839517,
       1772517704865,
-      1772522015063
+      1772522015063,
+      1772525210622
     ]
   },
   "decor:DecorShed": {
     "itemId": "DecorShed",
     "shopType": "decor",
-    "totalOccurrences": 580,
+    "totalOccurrences": 581,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772522015063,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772343438217,
       1772346393725,
       1772348978724,
       1772352049440,
@@ -7914,17 +7913,17 @@
       1772510459724,
       1772514839517,
       1772517704865,
-      1772522015063
+      1772522015063,
+      1772525210622
     ]
   },
   "decor:SeedSilo": {
     "itemId": "SeedSilo",
     "shopType": "decor",
-    "totalOccurrences": 580,
+    "totalOccurrences": 581,
     "firstSeen": 1770105624507,
-    "lastSeen": 1772522015063,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772343438217,
       1772346393725,
       1772348978724,
       1772352049440,
@@ -7973,17 +7972,17 @@
       1772510459724,
       1772514839517,
       1772517704865,
-      1772522015063
+      1772522015063,
+      1772525210622
     ]
   },
   "egg:UncommonEgg": {
     "itemId": "UncommonEgg",
     "shopType": "egg",
-    "totalOccurrences": 333,
+    "totalOccurrences": 334,
     "firstSeen": 1770108761663,
-    "lastSeen": 1772524369883,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772301228910,
       1772317857319,
       1772319104497,
       1772321832513,
@@ -8032,7 +8031,8 @@
       1772495750580,
       1772507423532,
       1772522015063,
-      1772524369883
+      1772524369883,
+      1772525210622
     ]
   },
   "decor:WoodBridge": {
@@ -8097,11 +8097,10 @@
   "seed:Corn": {
     "itemId": "Corn",
     "shopType": "seed",
-    "totalOccurrences": 153,
+    "totalOccurrences": 154,
     "firstSeen": 1770114351051,
-    "lastSeen": 1772524369883,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1771958404189,
       1771968506349,
       1772014172074,
       1772054931193,
@@ -8150,7 +8149,8 @@
       1772495750580,
       1772510459724,
       1772512965197,
-      1772524369883
+      1772524369883,
+      1772525210622
     ]
   },
   "decor:StrawScarecrow": {
@@ -8351,11 +8351,10 @@
   "decor:WoodPergola": {
     "itemId": "WoodPergola",
     "shopType": "decor",
-    "totalOccurrences": 301,
+    "totalOccurrences": 302,
     "firstSeen": 1770121644310,
-    "lastSeen": 1772522015063,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
-      1772150438297,
       1772160479742,
       1772179497369,
       1772195093094,
@@ -8404,7 +8403,8 @@
       1772510459724,
       1772514839517,
       1772517704865,
-      1772522015063
+      1772522015063,
+      1772525210622
     ]
   },
   "decor:WoodLampPost": {
@@ -8738,9 +8738,9 @@
   "decor:MarbleLampPost": {
     "itemId": "MarbleLampPost",
     "shopType": "decor",
-    "totalOccurrences": 49,
+    "totalOccurrences": 50,
     "firstSeen": 1770139895191,
-    "lastSeen": 1772493128956,
+    "lastSeen": 1772525210622,
     "recentTimestamps": [
       1770139895191,
       1770148890163,
@@ -8790,7 +8790,8 @@
       1772384546818,
       1772428737913,
       1772449487316,
-      1772493128956
+      1772493128956,
+      1772525210622
     ]
   },
   "egg:SnowEgg": {
