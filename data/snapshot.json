@@ -1,11 +1,11 @@
 {
   "seed": {
-    "secondsUntilRestock": 136,
-    "lastRestockAt": 1772512965197,
+    "secondsUntilRestock": 61,
+    "lastRestockAt": 1772514839517,
     "items": [
       {
         "name": "Carrot",
-        "stock": 19
+        "stock": 13
       },
       {
         "name": "Cabbage",
@@ -17,26 +17,26 @@
       },
       {
         "name": "Aloe",
-        "stock": 4
+        "stock": 10
       },
       {
         "name": "Beet",
-        "stock": 5
+        "stock": 10
       },
       {
         "name": "FavaBean",
-        "stock": 5
+        "stock": 2
       },
       {
         "name": "Blueberry",
+        "stock": 5
+      },
+      {
+        "name": "Apple",
         "stock": 2
       },
       {
         "name": "Tomato",
-        "stock": 3
-      },
-      {
-        "name": "Corn",
         "stock": 2
       },
       {
@@ -44,40 +44,48 @@
         "stock": 1
       },
       {
-        "name": "Lily",
+        "name": "Banana",
         "stock": 2
       },
       {
-        "name": "Peach",
+        "name": "Camellia",
         "stock": 1
       },
       {
         "name": "BurrosTail",
         "stock": 2
+      },
+      {
+        "name": "Chrysanthemum",
+        "stock": 1
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 136,
-    "lastRestockAt": 1772512965197,
+    "secondsUntilRestock": 61,
+    "lastRestockAt": 1772514839517,
     "items": [
       {
         "name": "CommonEgg",
+        "stock": 1
+      },
+      {
+        "name": "RareEgg",
         "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 1036,
-    "lastRestockAt": 1772510459724,
+    "secondsUntilRestock": 2761,
+    "lastRestockAt": 1772514839517,
     "items": [
       {
         "name": "SmallRock",
-        "stock": 5
+        "stock": 3
       },
       {
         "name": "MediumRock",
-        "stock": 3
+        "stock": 2
       },
       {
         "name": "HayBale",
@@ -108,7 +116,7 @@
         "stock": 2
       },
       {
-        "name": "MarbleBench",
+        "name": "StoneLampPost",
         "stock": 1
       },
       {
