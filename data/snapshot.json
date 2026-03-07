@@ -1,82 +1,82 @@
 {
   "seed": {
-    "secondsUntilRestock": 278,
-    "lastRestockAt": 1772875823239,
+    "secondsUntilRestock": 284,
+    "lastRestockAt": 1772876716910,
     "items": [
       {
         "name": "Carrot",
-        "stock": 20
-      },
-      {
-        "name": "Cabbage",
-        "stock": 3
-      },
-      {
-        "name": "Strawberry",
-        "stock": 5
-      },
-      {
-        "name": "Aloe",
         "stock": 7
       },
       {
-        "name": "Beet",
-        "stock": 9
-      },
-      {
-        "name": "FavaBean",
-        "stock": 5
-      },
-      {
-        "name": "Blueberry",
-        "stock": 3
-      },
-      {
-        "name": "Apple",
+        "name": "Cabbage",
         "stock": 2
       },
       {
-        "name": "Tomato",
-        "stock": 3
+        "name": "Strawberry",
+        "stock": 4
       },
       {
-        "name": "Corn",
-        "stock": 4
+        "name": "Aloe",
+        "stock": 5
+      },
+      {
+        "name": "Beet",
+        "stock": 7
+      },
+      {
+        "name": "Blueberry",
+        "stock": 2
+      },
+      {
+        "name": "Apple",
+        "stock": 1
+      },
+      {
+        "name": "OrangeTulip",
+        "stock": 9
+      },
+      {
+        "name": "Tomato",
+        "stock": 1
+      },
+      {
+        "name": "Echeveria",
+        "stock": 1
       },
       {
         "name": "Banana",
         "stock": 3
       },
       {
-        "name": "Lily",
-        "stock": 3
+        "name": "Camellia",
+        "stock": 1
       },
       {
         "name": "Peach",
+        "stock": 1
+      },
+      {
+        "name": "Cactus",
+        "stock": 5
+      },
+      {
+        "name": "Grape",
         "stock": 1
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 878,
-    "lastRestockAt": 1772875823239,
+    "secondsUntilRestock": 884,
+    "lastRestockAt": 1772876716910,
     "items": [
       {
         "name": "CommonEgg",
-        "stock": 3
-      },
-      {
-        "name": "UncommonEgg",
-        "stock": 1
-      },
-      {
-        "name": "RareEgg",
-        "stock": 1
+        "stock": 2
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 1778,
+    "secondsUntilRestock": 884,
     "lastRestockAt": 1772874846691,
     "items": [
       {
