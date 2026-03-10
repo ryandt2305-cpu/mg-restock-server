@@ -1,86 +1,78 @@
 {
   "seed": {
-    "secondsUntilRestock": 144,
-    "lastRestockAt": 1773173856948,
+    "secondsUntilRestock": 253,
+    "lastRestockAt": 1773174948238,
     "items": [
       {
         "name": "Carrot",
-        "stock": 19
+        "stock": 14
       },
       {
         "name": "Cabbage",
-        "stock": 3
+        "stock": 2
       },
       {
         "name": "Strawberry",
-        "stock": 6
+        "stock": 5
       },
       {
         "name": "Aloe",
-        "stock": 7
-      },
-      {
-        "name": "Beet",
         "stock": 8
       },
       {
+        "name": "Beet",
+        "stock": 7
+      },
+      {
         "name": "FavaBean",
-        "stock": 4
+        "stock": 2
       },
       {
         "name": "Blueberry",
-        "stock": 2
-      },
-      {
-        "name": "Apple",
         "stock": 1
-      },
-      {
-        "name": "OrangeTulip",
-        "stock": 19
       },
       {
         "name": "Tomato",
-        "stock": 2
-      },
-      {
-        "name": "Watermelon",
-        "stock": 6
+        "stock": 1
       },
       {
         "name": "Echeveria",
-        "stock": 1
-      },
-      {
-        "name": "Pear",
-        "stock": 1
+        "stock": 2
       },
       {
         "name": "Lily",
         "stock": 2
       },
       {
+        "name": "Camellia",
+        "stock": 1
+      },
+      {
+        "name": "Peach",
+        "stock": 1
+      },
+      {
         "name": "BurrosTail",
-        "stock": 2
+        "stock": 3
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 744,
-    "lastRestockAt": 1773173856948,
+    "secondsUntilRestock": 553,
+    "lastRestockAt": 1773174948238,
     "items": [
       {
         "name": "CommonEgg",
-        "stock": 3
+        "stock": 2
       },
       {
-        "name": "RareEgg",
+        "name": "UncommonEgg",
         "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 2544,
+    "secondsUntilRestock": 1453,
     "lastRestockAt": 1773172963602,
     "items": [
       {
