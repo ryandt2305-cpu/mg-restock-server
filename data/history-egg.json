@@ -486,11 +486,10 @@
   "egg:CommonEgg": {
     "itemId": "CommonEgg",
     "shopType": "egg",
-    "totalOccurrences": 1383,
+    "totalOccurrences": 1384,
     "firstSeen": 1770105624507,
-    "lastSeen": 1773232547843,
+    "lastSeen": 1773234197190,
     "recentTimestamps": [
-      1773162028100,
       1773163468828,
       1773164789974,
       1773165927878,
@@ -539,17 +538,17 @@
       1773229233110,
       1773230105559,
       1773231365747,
-      1773232547843
+      1773232547843,
+      1773234197190
     ]
   },
   "egg:UncommonEgg": {
     "itemId": "UncommonEgg",
     "shopType": "egg",
-    "totalOccurrences": 552,
+    "totalOccurrences": 553,
     "firstSeen": 1770108761663,
-    "lastSeen": 1773227053387,
+    "lastSeen": 1773234197190,
     "recentTimestamps": [
-      1773047435808,
       1773050245511,
       1773053182530,
       1773054396889,
@@ -598,17 +597,17 @@
       1773218491267,
       1773219732854,
       1773225891730,
-      1773227053387
+      1773227053387,
+      1773234197190
     ]
   },
   "egg:RareEgg": {
     "itemId": "RareEgg",
     "shopType": "egg",
-    "totalOccurrences": 441,
+    "totalOccurrences": 442,
     "firstSeen": 1770116862608,
-    "lastSeen": 1773232547843,
+    "lastSeen": 1773234197190,
     "recentTimestamps": [
-      1772996614200,
       1772998322669,
       1773000090223,
       1773004080799,
@@ -657,7 +656,8 @@
       1773225891730,
       1773229233110,
       1773231365747,
-      1773232547843
+      1773232547843,
+      1773234197190
     ]
   },
   "egg:SnowEgg": {
@@ -770,9 +770,9 @@
   "egg:MythicalEgg": {
     "itemId": "MythicalEgg",
     "shopType": "egg",
-    "totalOccurrences": 13,
+    "totalOccurrences": 14,
     "firstSeen": 1770572754823,
-    "lastSeen": 1773163468828,
+    "lastSeen": 1773234197190,
     "recentTimestamps": [
       1770572754823,
       1770589847002,
@@ -786,7 +786,8 @@
       1772676867241,
       1772860024532,
       1773141707045,
-      1773163468828
+      1773163468828,
+      1773234197190
     ]
   }
 }
