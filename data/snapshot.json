@@ -1,55 +1,47 @@
 {
   "seed": {
-    "secondsUntilRestock": 1,
-    "lastRestockAt": 1773413399649,
+    "secondsUntilRestock": 44,
+    "lastRestockAt": 1773414556332,
     "items": [
       {
         "name": "Carrot",
-        "stock": 18
+        "stock": 12
       },
       {
         "name": "Cabbage",
-        "stock": 3
+        "stock": 2
       },
       {
         "name": "Strawberry",
-        "stock": 3
+        "stock": 2
       },
       {
         "name": "Aloe",
-        "stock": 5
+        "stock": 6
       },
       {
         "name": "Beet",
-        "stock": 5
+        "stock": 6
       },
       {
         "name": "FavaBean",
         "stock": 5
       },
       {
-        "name": "Blueberry",
-        "stock": 4
-      },
-      {
-        "name": "Apple",
-        "stock": 2
+        "name": "OrangeTulip",
+        "stock": 25
       },
       {
         "name": "Tomato",
-        "stock": 3
+        "stock": 1
+      },
+      {
+        "name": "Corn",
+        "stock": 4
       },
       {
         "name": "Echeveria",
-        "stock": 1
-      },
-      {
-        "name": "Lily",
         "stock": 2
-      },
-      {
-        "name": "Camellia",
-        "stock": 1
       },
       {
         "name": "Peach",
@@ -57,34 +49,38 @@
       },
       {
         "name": "BurrosTail",
-        "stock": 3
+        "stock": 2
       },
       {
-        "name": "Grape",
+        "name": "PassionFruit",
         "stock": 1
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 601,
-    "lastRestockAt": 1773413399649,
+    "secondsUntilRestock": 344,
+    "lastRestockAt": 1773414556332,
     "items": [
       {
         "name": "CommonEgg",
-        "stock": 1
+        "stock": 2
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 601,
-    "lastRestockAt": 1773410826729,
+    "secondsUntilRestock": 3044,
+    "lastRestockAt": 1773414556332,
     "items": [
       {
         "name": "SmallRock",
-        "stock": 5
+        "stock": 3
       },
       {
         "name": "MediumRock",
+        "stock": 3
+      },
+      {
+        "name": "HayBale",
         "stock": 2
       },
       {
@@ -100,10 +96,6 @@
         "stock": 2
       },
       {
-        "name": "WoodPergola",
-        "stock": 2
-      },
-      {
         "name": "StoneBench",
         "stock": 2
       },
@@ -113,6 +105,10 @@
       },
       {
         "name": "MarbleBench",
+        "stock": 1
+      },
+      {
+        "name": "MiniFairyKeep",
         "stock": 1
       },
       {
