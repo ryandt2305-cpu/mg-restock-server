@@ -1,23 +1,23 @@
 {
   "seed": {
-    "secondsUntilRestock": 238,
-    "lastRestockAt": 1773370263781,
+    "secondsUntilRestock": 174,
+    "lastRestockAt": 1773373327022,
     "items": [
       {
         "name": "Carrot",
-        "stock": 17
+        "stock": 10
       },
       {
         "name": "Cabbage",
-        "stock": 2
+        "stock": 3
       },
       {
         "name": "Strawberry",
-        "stock": 1
+        "stock": 5
       },
       {
         "name": "Aloe",
-        "stock": 9
+        "stock": 7
       },
       {
         "name": "Beet",
@@ -40,36 +40,36 @@
         "stock": 2
       },
       {
-        "name": "Corn",
-        "stock": 2
-      },
-      {
         "name": "Echeveria",
         "stock": 1
       },
       {
-        "name": "Banana",
-        "stock": 3
+        "name": "Pear",
+        "stock": 2
       },
       {
-        "name": "Sunflower",
-        "stock": 1
+        "name": "Lily",
+        "stock": 2
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 538,
-    "lastRestockAt": 1773370263781,
+    "secondsUntilRestock": 174,
+    "lastRestockAt": 1773373327022,
     "items": [
       {
         "name": "CommonEgg",
+        "stock": 2
+      },
+      {
+        "name": "UncommonEgg",
         "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 538,
-    "lastRestockAt": 1773370263781,
+    "secondsUntilRestock": 1074,
+    "lastRestockAt": 1773373327022,
     "items": [
       {
         "name": "SmallRock",
@@ -78,10 +78,6 @@
       {
         "name": "MediumRock",
         "stock": 3
-      },
-      {
-        "name": "HayBale",
-        "stock": 1
       },
       {
         "name": "StringLights",
@@ -100,12 +96,8 @@
         "stock": 2
       },
       {
-        "name": "WoodPergola",
+        "name": "WoodBridge",
         "stock": 2
-      },
-      {
-        "name": "WoodOwl",
-        "stock": 1
       },
       {
         "name": "StoneBench",
@@ -116,7 +108,15 @@
         "stock": 2
       },
       {
-        "name": "MiniFairyCottage",
+        "name": "MarbleBench",
+        "stock": 1
+      },
+      {
+        "name": "MarbleArch",
+        "stock": 1
+      },
+      {
+        "name": "MarbleBridge",
         "stock": 1
       },
       {
