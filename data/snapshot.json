@@ -1,23 +1,23 @@
 {
   "seed": {
-    "secondsUntilRestock": 228,
-    "lastRestockAt": 1773525373140,
+    "secondsUntilRestock": 300,
+    "lastRestockAt": 1773526200349,
     "items": [
       {
         "name": "Carrot",
-        "stock": 20
+        "stock": 7
       },
       {
         "name": "Cabbage",
-        "stock": 3
+        "stock": 2
       },
       {
         "name": "Strawberry",
-        "stock": 4
+        "stock": 2
       },
       {
         "name": "Aloe",
-        "stock": 4
+        "stock": 3
       },
       {
         "name": "Beet",
@@ -25,10 +25,26 @@
       },
       {
         "name": "FavaBean",
+        "stock": 2
+      },
+      {
+        "name": "Blueberry",
+        "stock": 2
+      },
+      {
+        "name": "Apple",
+        "stock": 2
+      },
+      {
+        "name": "Tomato",
         "stock": 3
       },
       {
-        "name": "Banana",
+        "name": "Coconut",
+        "stock": 2
+      },
+      {
+        "name": "Lily",
         "stock": 2
       },
       {
@@ -36,40 +52,36 @@
         "stock": 1
       },
       {
-        "name": "BurrosTail",
-        "stock": 2
-      },
-      {
-        "name": "Date",
-        "stock": 1
+        "name": "VioletCort",
+        "stock": 3
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 228,
-    "lastRestockAt": 1773525373140,
+    "secondsUntilRestock": 300,
+    "lastRestockAt": 1773526200349,
     "items": [
       {
         "name": "CommonEgg",
         "stock": 1
       },
       {
-        "name": "RareEgg",
+        "name": "UncommonEgg",
         "stock": 1
       },
       {
-        "name": "SnowEgg",
+        "name": "RareEgg",
         "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 228,
-    "lastRestockAt": 1773522176171,
+    "secondsUntilRestock": 3000,
+    "lastRestockAt": 1773526200349,
     "items": [
       {
         "name": "SmallRock",
-        "stock": 3
+        "stock": 4
       },
       {
         "name": "MediumRock",
@@ -102,10 +114,6 @@
       {
         "name": "StoneArch",
         "stock": 2
-      },
-      {
-        "name": "StoneLampPost",
-        "stock": 1
       },
       {
         "name": "MarbleArch",
