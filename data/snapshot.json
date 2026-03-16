@@ -1,7 +1,7 @@
 {
   "seed": {
-    "secondsUntilRestock": 201,
-    "lastRestockAt": 1773697299658,
+    "secondsUntilRestock": 78,
+    "lastRestockAt": 1773698322848,
     "items": [
       {
         "name": "Carrot",
@@ -13,42 +13,38 @@
       },
       {
         "name": "Strawberry",
-        "stock": 2
-      },
-      {
-        "name": "Aloe",
-        "stock": 8
-      },
-      {
-        "name": "Beet",
-        "stock": 8
-      },
-      {
-        "name": "FavaBean",
-        "stock": 4
-      },
-      {
-        "name": "Blueberry",
         "stock": 3
       },
       {
-        "name": "Apple",
-        "stock": 1
+        "name": "Aloe",
+        "stock": 3
       },
       {
-        "name": "OrangeTulip",
-        "stock": 24
+        "name": "Beet",
+        "stock": 10
+      },
+      {
+        "name": "FavaBean",
+        "stock": 3
+      },
+      {
+        "name": "Blueberry",
+        "stock": 4
       },
       {
         "name": "Tomato",
-        "stock": 2
-      },
-      {
-        "name": "Echeveria",
         "stock": 1
       },
       {
-        "name": "Coconut",
+        "name": "Echeveria",
+        "stock": 2
+      },
+      {
+        "name": "Pear",
+        "stock": 2
+      },
+      {
+        "name": "Banana",
         "stock": 2
       },
       {
@@ -56,31 +52,27 @@
         "stock": 1
       },
       {
-        "name": "Pepper",
-        "stock": 1
+        "name": "BurrosTail",
+        "stock": 3
       },
       {
-        "name": "Lemon",
-        "stock": 1
+        "name": "Bamboo",
+        "stock": 9
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 201,
-    "lastRestockAt": 1773697299658,
+    "secondsUntilRestock": 78,
+    "lastRestockAt": 1773698322848,
     "items": [
       {
         "name": "CommonEgg",
-        "stock": 3
-      },
-      {
-        "name": "UncommonEgg",
-        "stock": 1
+        "stock": 2
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 1101,
+    "secondsUntilRestock": 78,
     "lastRestockAt": 1773694916735,
     "items": [
       {
