@@ -1,11 +1,11 @@
 {
   "seed": {
-    "secondsUntilRestock": 299,
-    "lastRestockAt": 1773770401383,
+    "secondsUntilRestock": 13,
+    "lastRestockAt": 1773772187797,
     "items": [
       {
         "name": "Carrot",
-        "stock": 19
+        "stock": 10
       },
       {
         "name": "Cabbage",
@@ -13,37 +13,61 @@
       },
       {
         "name": "Strawberry",
-        "stock": 4
+        "stock": 5
       },
       {
         "name": "Aloe",
-        "stock": 6
+        "stock": 5
       },
       {
         "name": "Beet",
-        "stock": 9
+        "stock": 8
       },
       {
-        "name": "FavaBean",
+        "name": "Blueberry",
+        "stock": 2
+      },
+      {
+        "name": "Apple",
+        "stock": 2
+      },
+      {
+        "name": "OrangeTulip",
+        "stock": 21
+      },
+      {
+        "name": "Tomato",
+        "stock": 1
+      },
+      {
+        "name": "Corn",
+        "stock": 6
+      },
+      {
+        "name": "Echeveria",
+        "stock": 2
+      },
+      {
+        "name": "Banana",
         "stock": 3
       },
       {
-        "name": "Lily",
+        "name": "Cactus",
+        "stock": 15
+      },
+      {
+        "name": "Date",
         "stock": 1
       },
       {
-        "name": "Peach",
-        "stock": 1
-      },
-      {
-        "name": "Lemon",
+        "name": "Lychee",
         "stock": 2
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 899,
-    "lastRestockAt": 1773770401383,
+    "secondsUntilRestock": 13,
+    "lastRestockAt": 1773772187797,
     "items": [
       {
         "name": "CommonEgg",
@@ -52,11 +76,15 @@
       {
         "name": "RareEgg",
         "stock": 1
+      },
+      {
+        "name": "LegendaryEgg",
+        "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 3599,
+    "secondsUntilRestock": 1813,
     "lastRestockAt": 1773770401383,
     "items": [
       {
