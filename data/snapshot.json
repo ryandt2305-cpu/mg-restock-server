@@ -1,11 +1,11 @@
 {
   "seed": {
-    "secondsUntilRestock": 69,
-    "lastRestockAt": 1773708531393,
+    "secondsUntilRestock": 152,
+    "lastRestockAt": 1773710650527,
     "items": [
       {
         "name": "Carrot",
-        "stock": 17
+        "stock": 19
       },
       {
         "name": "Cabbage",
@@ -17,45 +17,29 @@
       },
       {
         "name": "Aloe",
-        "stock": 4
+        "stock": 5
       },
       {
         "name": "Beet",
-        "stock": 6
-      },
-      {
-        "name": "Blueberry",
-        "stock": 4
-      },
-      {
-        "name": "Tomato",
-        "stock": 3
-      },
-      {
-        "name": "Corn",
-        "stock": 2
-      },
-      {
-        "name": "Pumpkin",
-        "stock": 1
+        "stock": 9
       },
       {
         "name": "Echeveria",
         "stock": 2
       },
       {
-        "name": "Coconut",
-        "stock": 1
+        "name": "Lily",
+        "stock": 3
       },
       {
-        "name": "Lily",
-        "stock": 2
+        "name": "Camellia",
+        "stock": 1
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 669,
-    "lastRestockAt": 1773708531393,
+    "secondsUntilRestock": 752,
+    "lastRestockAt": 1773710650527,
     "items": [
       {
         "name": "CommonEgg",
@@ -68,27 +52,19 @@
     ]
   },
   "decor": {
-    "secondsUntilRestock": 669,
-    "lastRestockAt": 1773705737927,
+    "secondsUntilRestock": 3452,
+    "lastRestockAt": 1773710650527,
     "items": [
       {
         "name": "SmallRock",
-        "stock": 3
+        "stock": 5
       },
       {
         "name": "MediumRock",
-        "stock": 2
-      },
-      {
-        "name": "HayBale",
-        "stock": 1
+        "stock": 3
       },
       {
         "name": "StringLights",
-        "stock": 2
-      },
-      {
-        "name": "FanousLantern",
         "stock": 2
       },
       {
@@ -109,6 +85,10 @@
       },
       {
         "name": "StoneBirdbath",
+        "stock": 1
+      },
+      {
+        "name": "MarbleBench",
         "stock": 1
       },
       {
