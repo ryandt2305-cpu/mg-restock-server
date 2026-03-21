@@ -1,11 +1,11 @@
 {
   "seed": {
-    "secondsUntilRestock": 185,
-    "lastRestockAt": 1774058816118,
+    "secondsUntilRestock": 249,
+    "lastRestockAt": 1774062352041,
     "items": [
       {
         "name": "Carrot",
-        "stock": 11
+        "stock": 12
       },
       {
         "name": "Cabbage",
@@ -13,51 +13,63 @@
       },
       {
         "name": "Strawberry",
-        "stock": 5
+        "stock": 4
       },
       {
         "name": "Aloe",
-        "stock": 10
-      },
-      {
-        "name": "Beet",
-        "stock": 7
-      },
-      {
-        "name": "Lily",
         "stock": 3
       },
       {
-        "name": "BurrosTail",
+        "name": "Beet",
+        "stock": 6
+      },
+      {
+        "name": "FavaBean",
         "stock": 2
       },
       {
-        "name": "Cactus",
-        "stock": 7
+        "name": "Blueberry",
+        "stock": 2
+      },
+      {
+        "name": "Tomato",
+        "stock": 3
+      },
+      {
+        "name": "Daffodil",
+        "stock": 1
+      },
+      {
+        "name": "Pear",
+        "stock": 1
+      },
+      {
+        "name": "Chrysanthemum",
+        "stock": 1
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 485,
-    "lastRestockAt": 1774058816118,
+    "secondsUntilRestock": 549,
+    "lastRestockAt": 1774062352041,
     "items": [
       {
         "name": "CommonEgg",
-        "stock": 3
+        "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 3185,
-    "lastRestockAt": 1774058816118,
+    "secondsUntilRestock": 3249,
+    "lastRestockAt": 1774062352041,
     "items": [
       {
         "name": "SmallRock",
-        "stock": 5
+        "stock": 3
       },
       {
         "name": "MediumRock",
-        "stock": 2
+        "stock": 3
       },
       {
         "name": "StringLights",
@@ -73,14 +85,6 @@
       },
       {
         "name": "WoodArch",
-        "stock": 2
-      },
-      {
-        "name": "WoodPergola",
-        "stock": 2
-      },
-      {
-        "name": "WoodBridge",
         "stock": 2
       },
       {
