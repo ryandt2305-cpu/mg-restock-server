@@ -1,43 +1,43 @@
 {
   "seed": {
-    "secondsUntilRestock": 231,
-    "lastRestockAt": 1774202470117,
+    "secondsUntilRestock": 166,
+    "lastRestockAt": 1774203435071,
     "items": [
       {
         "name": "Carrot",
-        "stock": 12
+        "stock": 13
       },
       {
         "name": "Cabbage",
-        "stock": 3
-      },
-      {
-        "name": "Strawberry",
-        "stock": 3
-      },
-      {
-        "name": "Aloe",
-        "stock": 6
-      },
-      {
-        "name": "Beet",
-        "stock": 6
-      },
-      {
-        "name": "FavaBean",
-        "stock": 3
-      },
-      {
-        "name": "Blueberry",
         "stock": 2
       },
       {
-        "name": "OrangeTulip",
-        "stock": 19
+        "name": "Strawberry",
+        "stock": 5
       },
       {
-        "name": "Watermelon",
+        "name": "Aloe",
         "stock": 3
+      },
+      {
+        "name": "Beet",
+        "stock": 7
+      },
+      {
+        "name": "Blueberry",
+        "stock": 3
+      },
+      {
+        "name": "Apple",
+        "stock": 1
+      },
+      {
+        "name": "OrangeTulip",
+        "stock": 16
+      },
+      {
+        "name": "Tomato",
+        "stock": 1
       },
       {
         "name": "Echeveria",
@@ -46,41 +46,25 @@
       {
         "name": "Banana",
         "stock": 2
-      },
-      {
-        "name": "Peach",
-        "stock": 1
-      },
-      {
-        "name": "BurrosTail",
-        "stock": 2
-      },
-      {
-        "name": "Cactus",
-        "stock": 10
-      },
-      {
-        "name": "Grape",
-        "stock": 1
-      },
-      {
-        "name": "Cacao",
-        "stock": 1
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 831,
-    "lastRestockAt": 1774202470117,
+    "secondsUntilRestock": 766,
+    "lastRestockAt": 1774203435071,
     "items": [
       {
         "name": "CommonEgg",
-        "stock": 3
+        "stock": 1
+      },
+      {
+        "name": "UncommonEgg",
+        "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 3531,
+    "secondsUntilRestock": 2566,
     "lastRestockAt": 1774202470117,
     "items": [
       {
