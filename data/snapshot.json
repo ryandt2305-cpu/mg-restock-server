@@ -1,26 +1,22 @@
 {
   "seed": {
-    "secondsUntilRestock": 9,
-    "lastRestockAt": 1774375192176,
+    "secondsUntilRestock": 279,
+    "lastRestockAt": 1774377022429,
     "items": [
       {
         "name": "Carrot",
-        "stock": 22
+        "stock": 8
       },
       {
         "name": "Cabbage",
-        "stock": 3
+        "stock": 2
       },
       {
         "name": "Strawberry",
-        "stock": 3
+        "stock": 6
       },
       {
         "name": "Aloe",
-        "stock": 4
-      },
-      {
-        "name": "Clover",
         "stock": 3
       },
       {
@@ -29,34 +25,22 @@
       },
       {
         "name": "FavaBean",
-        "stock": 2
+        "stock": 4
       },
       {
         "name": "Blueberry",
-        "stock": 1
+        "stock": 4
       },
       {
-        "name": "Apple",
-        "stock": 2
+        "name": "OrangeTulip",
+        "stock": 22
       },
       {
         "name": "Tomato",
         "stock": 1
       },
       {
-        "name": "Daffodil",
-        "stock": 3
-      },
-      {
-        "name": "Echeveria",
-        "stock": 1
-      },
-      {
-        "name": "Coconut",
-        "stock": 1
-      },
-      {
-        "name": "Banana",
+        "name": "Pear",
         "stock": 2
       },
       {
@@ -66,30 +50,38 @@
       {
         "name": "Camellia",
         "stock": 1
+      },
+      {
+        "name": "BurrosTail",
+        "stock": 2
+      },
+      {
+        "name": "Bamboo",
+        "stock": 7
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 9,
-    "lastRestockAt": 1774375192176,
+    "secondsUntilRestock": 879,
+    "lastRestockAt": 1774377022429,
     "items": [
       {
         "name": "CommonEgg",
-        "stock": 2
+        "stock": 1
       },
       {
-        "name": "UncommonEgg",
+        "name": "RareEgg",
         "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 9,
-    "lastRestockAt": 1774372180650,
+    "secondsUntilRestock": 1779,
+    "lastRestockAt": 1774377022429,
     "items": [
       {
         "name": "SmallRock",
-        "stock": 3
+        "stock": 5
       },
       {
         "name": "MediumRock",
@@ -112,14 +104,6 @@
         "stock": 2
       },
       {
-        "name": "WoodPergola",
-        "stock": 2
-      },
-      {
-        "name": "WoodBridge",
-        "stock": 2
-      },
-      {
         "name": "StoneBench",
         "stock": 2
       },
@@ -128,7 +112,7 @@
         "stock": 2
       },
       {
-        "name": "StrawScarecrow",
+        "name": "MarbleBridge",
         "stock": 1
       },
       {
