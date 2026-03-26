@@ -1,23 +1,27 @@
 {
   "seed": {
-    "secondsUntilRestock": 284,
-    "lastRestockAt": 1774519817613,
+    "secondsUntilRestock": 53,
+    "lastRestockAt": 1774521248249,
     "items": [
       {
         "name": "Carrot",
-        "stock": 24
+        "stock": 15
       },
       {
         "name": "Cabbage",
-        "stock": 3
+        "stock": 2
       },
       {
         "name": "Strawberry",
-        "stock": 5
+        "stock": 3
       },
       {
         "name": "Aloe",
-        "stock": 7
+        "stock": 4
+      },
+      {
+        "name": "Clover",
+        "stock": 2
       },
       {
         "name": "Beet",
@@ -25,11 +29,11 @@
       },
       {
         "name": "FavaBean",
-        "stock": 5
+        "stock": 2
       },
       {
         "name": "Blueberry",
-        "stock": 4
+        "stock": 3
       },
       {
         "name": "Apple",
@@ -37,46 +41,34 @@
       },
       {
         "name": "OrangeTulip",
-        "stock": 25
-      },
-      {
-        "name": "Tomato",
-        "stock": 2
+        "stock": 13
       },
       {
         "name": "Echeveria",
         "stock": 2
       },
       {
-        "name": "Banana",
+        "name": "Camellia",
         "stock": 1
       },
       {
-        "name": "Lily",
-        "stock": 2
-      },
-      {
-        "name": "Peach",
+        "name": "Chrysanthemum",
         "stock": 1
-      },
-      {
-        "name": "Cactus",
-        "stock": 8
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 284,
-    "lastRestockAt": 1774519817613,
+    "secondsUntilRestock": 653,
+    "lastRestockAt": 1774521248249,
     "items": [
       {
         "name": "CommonEgg",
-        "stock": 2
+        "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 2984,
+    "secondsUntilRestock": 1553,
     "lastRestockAt": 1774519817613,
     "items": [
       {
