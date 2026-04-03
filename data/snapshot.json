@@ -1,11 +1,11 @@
 {
   "seed": {
-    "secondsUntilRestock": 28,
-    "lastRestockAt": 1775203172506,
+    "secondsUntilRestock": 156,
+    "lastRestockAt": 1775204845247,
     "items": [
       {
         "name": "Carrot",
-        "stock": 23
+        "stock": 17
       },
       {
         "name": "Cabbage",
@@ -13,86 +13,90 @@
       },
       {
         "name": "Strawberry",
-        "stock": 5
+        "stock": 2
       },
       {
         "name": "Aloe",
-        "stock": 7
+        "stock": 8
       },
       {
         "name": "Beet",
-        "stock": 5
+        "stock": 6
       },
       {
         "name": "FavaBean",
+        "stock": 5
+      },
+      {
+        "name": "Blueberry",
         "stock": 3
       },
       {
         "name": "Apple",
-        "stock": 1
-      },
-      {
-        "name": "OrangeTulip",
-        "stock": 24
-      },
-      {
-        "name": "Tomato",
         "stock": 2
       },
       {
-        "name": "Pumpkin",
-        "stock": 3
+        "name": "Daffodil",
+        "stock": 2
       },
       {
-        "name": "Mushroom",
-        "stock": 21
+        "name": "Corn",
+        "stock": 5
       },
       {
-        "name": "Grape",
+        "name": "Watermelon",
+        "stock": 6
+      },
+      {
+        "name": "Echeveria",
+        "stock": 2
+      },
+      {
+        "name": "Pear",
+        "stock": 2
+      },
+      {
+        "name": "Lily",
+        "stock": 2
+      },
+      {
+        "name": "Camellia",
         "stock": 1
+      },
+      {
+        "name": "Peach",
+        "stock": 1
+      },
+      {
+        "name": "BurrosTail",
+        "stock": 2
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 28,
-    "lastRestockAt": 1775203172506,
+    "secondsUntilRestock": 156,
+    "lastRestockAt": 1775204845247,
     "items": [
       {
         "name": "CommonEgg",
-        "stock": 3
+        "stock": 2
       },
       {
         "name": "UncommonEgg",
-        "stock": 1
-      },
-      {
-        "name": "RareEgg",
-        "stock": 1
-      },
-      {
-        "name": "MythicalEgg",
         "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 28,
-    "lastRestockAt": 1775201549848,
+    "secondsUntilRestock": 1956,
+    "lastRestockAt": 1775204845247,
     "items": [
       {
         "name": "SmallRock",
-        "stock": 4
-      },
-      {
-        "name": "MediumRock",
         "stock": 3
       },
       {
-        "name": "HayBale",
-        "stock": 2
-      },
-      {
-        "name": "StringLights",
+        "name": "MediumRock",
         "stock": 2
       },
       {
@@ -101,6 +105,10 @@
       },
       {
         "name": "WoodArch",
+        "stock": 2
+      },
+      {
+        "name": "WoodPergola",
         "stock": 2
       },
       {
@@ -114,10 +122,6 @@
       {
         "name": "StoneArch",
         "stock": 2
-      },
-      {
-        "name": "StoneBirdbath",
-        "stock": 1
       },
       {
         "name": "FeedingTrough",
