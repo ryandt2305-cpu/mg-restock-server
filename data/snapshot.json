@@ -1,67 +1,71 @@
 {
   "seed": {
-    "secondsUntilRestock": 179,
-    "lastRestockAt": 1775353322144,
+    "secondsUntilRestock": 174,
+    "lastRestockAt": 1775356927579,
     "items": [
       {
         "name": "Carrot",
-        "stock": 20
+        "stock": 11
       },
       {
         "name": "Cabbage",
-        "stock": 2
-      },
-      {
-        "name": "Strawberry",
         "stock": 3
       },
       {
+        "name": "Strawberry",
+        "stock": 5
+      },
+      {
         "name": "Aloe",
-        "stock": 8
+        "stock": 3
       },
       {
         "name": "Beet",
         "stock": 7
       },
       {
-        "name": "Blueberry",
-        "stock": 4
-      },
-      {
-        "name": "Apple",
-        "stock": 2
-      },
-      {
-        "name": "Lily",
+        "name": "FavaBean",
         "stock": 3
       },
       {
-        "name": "Cactus",
-        "stock": 7
+        "name": "Blueberry",
+        "stock": 3
+      },
+      {
+        "name": "Tomato",
+        "stock": 3
+      },
+      {
+        "name": "Pear",
+        "stock": 2
+      },
+      {
+        "name": "Banana",
+        "stock": 1
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 179,
-    "lastRestockAt": 1775353322144,
+    "secondsUntilRestock": 174,
+    "lastRestockAt": 1775356927579,
     "items": [
       {
         "name": "CommonEgg",
         "stock": 2
       },
       {
-        "name": "LegendaryEgg",
+        "name": "UncommonEgg",
         "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 1079,
-    "lastRestockAt": 1775353322144,
+    "secondsUntilRestock": 1074,
+    "lastRestockAt": 1775356927579,
     "items": [
       {
         "name": "SmallRock",
-        "stock": 3
+        "stock": 5
       },
       {
         "name": "MediumRock",
@@ -88,7 +92,7 @@
         "stock": 2
       },
       {
-        "name": "StoneBirdbath",
+        "name": "MarbleArch",
         "stock": 1
       },
       {
