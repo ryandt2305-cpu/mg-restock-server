@@ -1,86 +1,86 @@
 {
   "seed": {
-    "secondsUntilRestock": 177,
-    "lastRestockAt": 1775396224348,
+    "secondsUntilRestock": 31,
+    "lastRestockAt": 1775397569783,
     "items": [
       {
         "name": "Carrot",
-        "stock": 21
+        "stock": 11
       },
       {
         "name": "Cabbage",
-        "stock": 3
+        "stock": 2
       },
       {
         "name": "Strawberry",
-        "stock": 5
+        "stock": 2
       },
       {
         "name": "Aloe",
-        "stock": 5
+        "stock": 4
       },
       {
         "name": "Beet",
+        "stock": 8
+      },
+      {
+        "name": "FavaBean",
         "stock": 5
       },
       {
         "name": "Blueberry",
-        "stock": 5
-      },
-      {
-        "name": "Apple",
-        "stock": 2
-      },
-      {
-        "name": "OrangeTulip",
-        "stock": 13
-      },
-      {
-        "name": "Tomato",
         "stock": 3
       },
       {
-        "name": "Daffodil",
-        "stock": 2
+        "name": "Apple",
+        "stock": 1
+      },
+      {
+        "name": "OrangeTulip",
+        "stock": 9
+      },
+      {
+        "name": "Tomato",
+        "stock": 1
+      },
+      {
+        "name": "Corn",
+        "stock": 3
+      },
+      {
+        "name": "Watermelon",
+        "stock": 3
       },
       {
         "name": "Echeveria",
         "stock": 2
       },
       {
-        "name": "Pear",
+        "name": "Coconut",
         "stock": 1
       },
       {
-        "name": "Banana",
-        "stock": 2
+        "name": "Lily",
+        "stock": 3
+      },
+      {
+        "name": "BurrosTail",
+        "stock": 3
       }
     ]
   },
   "egg": {
-    "secondsUntilRestock": 477,
-    "lastRestockAt": 1775396224348,
+    "secondsUntilRestock": 31,
+    "lastRestockAt": 1775397569783,
     "items": [
       {
         "name": "CommonEgg",
         "stock": 2
-      },
-      {
-        "name": "UncommonEgg",
-        "stock": 1
-      },
-      {
-        "name": "RareEgg",
-        "stock": 1
-      },
-      {
-        "name": "LegendaryEgg",
-        "stock": 1
       }
     ]
   },
   "decor": {
-    "secondsUntilRestock": 1377,
+    "secondsUntilRestock": 31,
     "lastRestockAt": 1775394546131,
     "items": [
       {
