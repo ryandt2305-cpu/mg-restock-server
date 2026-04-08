@@ -17,6 +17,7 @@ const META_FILE = path.join(DATA_DIR, "meta.json");
 const MGDATA_CACHE_FILE = path.join(DATA_DIR, "mgdata-cache.json");
 const MGDATA_CACHE_MS = Number(process.env.MGDATA_CACHE_MS || 3600000);
 const FETCH_TIMEOUT_MS = Number(process.env.FETCH_TIMEOUT_MS || 15000);
+const LOAD_MGDATA_TIMEOUT_MS = Number(process.env.LOAD_MGDATA_TIMEOUT_MS || 30000);
 const LOAD_HISTORY_FROM_DB = process.env.LOAD_HISTORY_FROM_DB !== "0";
 const USE_DB_INGEST = process.env.USE_DB_INGEST !== "0";
 
@@ -113,6 +114,7 @@ async function loadMgData() {
     return buildMgData(cached.data, cached.nameIndex ?? null);
   }
 
+  console.log("[poll] Fetching MGData endpoints...");
   const [plantsRes, eggsRes, decorsRes] = await Promise.all([
     fetchWithTimeout(`${MG_API_BASE}/data/plants`, { headers: { "User-Agent": "Gemini-Server" } }),
     fetchWithTimeout(`${MG_API_BASE}/data/eggs`, { headers: { "User-Agent": "Gemini-Server" } }),
@@ -555,7 +557,15 @@ async function main() {
   }
   const live = await res.json();
   console.log("Loading MGData...");
-  const mgSets = await loadMgData();
+  const mgSets = await Promise.race([
+    loadMgData(),
+    new Promise((_, reject) => {
+      setTimeout(() => reject(new Error(`MGData load timed out after ${LOAD_MGDATA_TIMEOUT_MS}ms`)), LOAD_MGDATA_TIMEOUT_MS);
+    }),
+  ]).catch((err) => {
+    console.warn(`[poll] MGData unavailable; proceeding without strict item validation. ${err?.message ?? err}`);
+    return null;
+  });
   const nextSnapshot = normalizeSnapshot(live);
   const liveWeatherId = (await fetchWeatherId()) ?? normalizeWeather(live?.weather ?? live?.weatherId ?? live?.weather_id);
   if (!mgSets || (!mgSets.seed && !mgSets.egg && !mgSets.decor)) {
