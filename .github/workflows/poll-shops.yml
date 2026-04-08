@@ -28,7 +28,19 @@ jobs:
         run: npm install
 
       - name: Poll live shops
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: npm run poll
+
+      - name: Rebuild weather summary
+        run: |
+          curl -sS \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
+            -H "Content-Type: application/json" \
+            -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/rpc/rebuild_weather_summary" \
+            -d "{}"
 
       - name: Commit data
         run: |

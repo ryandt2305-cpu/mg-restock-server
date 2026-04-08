@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd /c \"dir /b \"\"C:\\\\Users\\\\ryand\\\\Feeder-Extension\\\\QPM-GR\\\\src\\\\ui\"\"\")"
+    ]
+  }
+}

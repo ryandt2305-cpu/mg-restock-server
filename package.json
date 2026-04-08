@@ -4,7 +4,13 @@
   "type": "module",
   "scripts": {
     "poll": "node scripts/poll.mjs",
-    "import:html": "node scripts/import-html.mjs"
+    "poll:weather": "node scripts/poll-weather.mjs",
+    "import:html": "node scripts/import-html.mjs",
+    "import:json": "node scripts/import-json.mjs",
+    "import:magicshopkeeper": "node scripts/import-magicshopkeeper.mjs",
+    "backfill:supabase": "node scripts/backfill-supabase.mjs",
+    "clean:supabase": "node scripts/clean-supabase.mjs",
+    "seed": "npx tsx scripts/seed-magicshopkeeper.ts"
   },
   "dependencies": {
     "node-fetch": "^3.3.2"

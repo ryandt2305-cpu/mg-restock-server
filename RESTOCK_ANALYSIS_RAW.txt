@@ -1,0 +1,729 @@
+================================================================================
+RESTOCK DATA VERIFICATION & DEEP ANALYSIS
+Generated: 2026-02-10T01:48:05.761Z
+Updated:   2026-02-11 (post gap-fill import + unified model)
+================================================================================
+
+DATA SUMMARY
+  Total events: 72,412 (was 66,707 pre-import)
+  Seed events: 51,288
+  Egg events: 17,183
+  Decor events: 3,941
+  Discord import events: 3,669 (gap-fill for Feb 4-10)
+  Date range: 2025-08-22 to 2026-02-11
+  Span: 172.6 days
+
+================================================================================
+SECTION 1: SHOP STRUCTURE
+================================================================================
+
+--- Seed Shop ---
+  Distinct cycles: 51,288
+  Cycle interval: 300s (5 min)
+  Slot count distribution:
+    3 items: 1 (0.0%)
+    4 items: 100 (0.2%)
+    5 items: 950 (2.0%)
+    6 items: 3416 (7.1%)
+    7 items: 6899 (14.4%)
+    8 items: 9609 (20.0%)
+    9 items: 9544 (19.9%)
+    10 items: 7570 (15.8%)
+    11 items: 4895 (10.2%)
+    12 items: 2726 (5.7%)
+    13 items: 1346 (2.8%)
+    14 items: 561 (1.2%)
+    15 items: 226 (0.5%)
+    16 items: 70 (0.1%)
+    17 items: 17 (0.0%)
+    18 items: 2 (0.0%)
+    19 items: 2 (0.0%)
+  Slots: min=3 avg=9.0 max=19
+
+--- Egg Shop ---
+  Distinct cycles: 17,183
+  Cycle interval: 900s (15 min)
+  Slot count distribution:
+    1 items: 5814 (36.4%)
+    2 items: 7267 (45.5%)
+    3 items: 2615 (16.4%)
+    4 items: 276 (1.7%)
+    5 items: 12 (0.1%)
+  Slots: min=1 avg=1.8 max=5
+
+--- Decor Shop ---
+  Distinct cycles: 3,941
+  Cycle interval: 3600s (60 min)
+  Slot count distribution:
+    6 items: 19 (0.7%)
+    7 items: 93 (3.3%)
+    8 items: 257 (9.2%)
+    9 items: 412 (14.8%)
+    10 items: 499 (17.9%)
+    11 items: 496 (17.8%)
+    12 items: 429 (15.4%)
+    13 items: 288 (10.3%)
+    14 items: 171 (6.1%)
+    15 items: 87 (3.1%)
+    16 items: 23 (0.8%)
+    17 items: 11 (0.4%)
+    18 items: 2 (0.1%)
+    19 items: 2 (0.1%)
+  Slots: min=6 avg=10.8 max=19
+
+================================================================================
+SECTION 2: PER-ITEM INTER-ARRIVAL DISTRIBUTION (Updated Feb 11)
+================================================================================
+
+--- Seed Shop Items ---
+Item                    Occ    Rate    Median      Mean     CV       Max Distribution Type
+Carrot                51288  1.0000        5m        5m  0.074       55m VERY REGULAR
+Strawberry            51288  1.0000        5m        5m  0.074       55m VERY REGULAR
+Blueberry             45410  0.9143        5m        6m  0.387       55m VERY REGULAR
+Tomato                45320  0.9124        5m        6m  0.388       60m VERY REGULAR
+Aloe                  44371  0.8933        5m        6m  0.432       55m VERY REGULAR
+Apple                 25633  0.5161        5m       10m  0.709       75m NEAR-GEO
+Lily                  25539  0.5142       10m       10m  0.707       80m NEAR-GEO
+Echeveria             20599  0.4147       10m       12m  0.775      105m NEAR-GEO
+BurrosTail            20574  0.4142       10m       13m  0.774      105m NEAR-GEO
+FavaBean              17583  0.3540        5m        7m  0.493       55m VERY REGULAR
+OrangeTulip           17438  0.3511       10m       15m  0.814      130m NEAR-GEO
+Camellia              13436  0.2705        5m       10m  0.705       90m NEAR-GEO
+Banana                12776  0.2572       15m       20m  0.865      180m NEAR-GEO
+Corn                   8829  0.1778       20m       29m  0.916      240m GEOMETRIC
+Daffodil               7555  0.1521       25m       34m  0.923      330m GEOMETRIC
+Watermelon             7253  0.1461       25m       35m  0.927      340m GEOMETRIC
+Cactus                 5241  0.1055       35m       49m  0.966      345m GEOMETRIC
+Grape                  5186  0.1044       35m       50m  0.927      460m GEOMETRIC
+Mushroom               5184  0.1044       35m       50m  0.948      475m GEOMETRIC
+Pumpkin                5137  0.1034       35m       50m  0.977      695m GEOMETRIC
+Coconut                4964  0.0999       35m       50m  0.946      505m GEOMETRIC
+Cabbage                4787  0.0964        5m        5m  0.194       55m VERY REGULAR
+Beet                   4787  0.0964        5m        5m  0.194       55m VERY REGULAR
+PineTree               4028  0.0813        5m        8m  0.652       50m REGULAR
+Bamboo                 2627  0.0529       70m       99m  0.926      675m GEOMETRIC
+Chrysanthemum          1212  0.0244       75m      103m  0.986      740m GEOMETRIC
+Pear                    992  0.0200       15m       24m  0.908      170m GEOMETRIC
+Lychee                  541  0.0109      320m      470m  0.982     3495m GEOMETRIC
+Sunflower               518  0.0104      350m      475m  0.930     2605m GEOMETRIC
+PassionFruit            497  0.0100      355m      492m  1.003     4775m GEOMETRIC
+Pepper                  490  0.0099      370m      503m  0.975     3770m GEOMETRIC
+Lemon                   487  0.0098      370m      501m  0.938     2930m GEOMETRIC
+DragonFruit             464  0.0094      405m      554m  0.904     2825m GEOMETRIC
+Gentian                 457  0.0092       40m       52m  0.849      235m NEAR-GEO
+Poinsettia              345  0.0070       65m       96m  1.041      925m GEOMETRIC
+VioletCort              249  0.0050       70m       98m  1.041      520m GEOMETRIC
+Cacao                   212  0.0043      375m      491m  0.943     3050m GEOMETRIC
+Starweaver               17  0.0003    14110m    13689m  0.662    27640m REGULAR (NON-GEO)
+DawnCelestial            11  0.0002    18300m    15970m  0.510    31550m REGULAR (NON-GEO)
+MoonCelestial            11  0.0002    18720m    17700m  0.412    27395m VERY REGULAR (NON-GEO)
+
+--- Egg Shop Items ---
+Item                    Occ    Rate    Median
+CommonEgg             17183  1.0000       15m
+UncommonEgg            6841  0.4131       15m
+RareEgg                5160  0.3116       15m
+LegendaryEgg           1689  0.1021       84m
+WinterEgg               429  0.0260  seasonal (last: Jan 12)
+MythicalEgg              172  0.0104    1020m
+SnowEgg                  102  0.0062      300m
+
+--- Decor Shop Items (top 20) ---
+Item                    Occ    Rate
+WoodBench              2940  1.0000
+MediumRock             2940  1.0000
+StoneArch              2940  1.0000
+StoneBench             2940  1.0000
+SmallRock              2940  1.0000
+WoodArch               2940  1.0000
+PetHutch               2336  0.7962
+HayBale                1328  0.4526
+MarbleArch             1246  0.4248
+MarbleBench            1229  0.4192
+PlanterPot             1001  0.3426
+WateringCans           1001  0.3426
+StringLights            970  0.3306
+WoodBridge              721  0.2458
+WoodLampPost            712  0.2433
+DecorShed               657  0.2239
+StoneLampPost           601  0.2049
+StoneBridge             590  0.2012
+WoodCaribou             558  0.1910 (seasonal - last Jan 12)
+MarbleBridge            466  0.1595
+
+--- Rare Decor Items ---
+Item                    Occ    Rate   Last Seen
+MiniFairyCottage         77  0.0263   Feb 10
+MarbleBlobling           71  0.0242   Feb 10
+MarbleFountain           59  0.0202   Feb 4
+MarbleCaribou            48  0.0164   Jan 11 (seasonal?)
+StrawScarecrow           25  0.0086   Feb 8
+MiniFairyForge           20  0.0068   Feb 10
+MiniFairyKeep            12  0.0041   Jan 27
+Cauldron                  7  0.0024   Nov 7 (seasonal)
+MiniWizardTower           4  0.0014   Jan 21
+
+--- Seasonal Items (stopped appearing) ---
+Item              Last Seen     Category
+WoodCaribou       Jan 12        Decor
+StoneCaribou      Jan 12        Decor
+ColoredStringLi.. Jan 11        Decor
+SmallGravestone   Nov 7         Decor (Halloween)
+MediumGravestone  Nov 6         Decor (Halloween)
+LargeGravestone   Nov 6         Decor (Halloween)
+Cauldron          Nov 7         Decor (Halloween)
+PineTree          Jan 12        Seed (Winter)
+WinterEgg         Jan 12        Egg (Winter)
+SnowEgg           Feb 10        Egg (Winter?)
+Poinsettia        Jan 11        Seed (Winter)
+
+================================================================================
+SECTION 3: CELESTIAL DEEP DIVE (Updated Feb 11)
+================================================================================
+
+=== Starweaver ===
+  Appearances: 17
+  Rate: 0.0003 (0.03% per cycle)
+  Intervals (n=16):
+    Min: 0.4d
+    P25: 3.6d
+    Median: 9.8d
+    Mean: 9.5d
+    P75: 17.4d
+    P90: 18.6d
+    P95: 19.2d
+    Max: 19.2d
+  CV: 0.662 (MORE REGULAR than geometric, which predicts CV=0.9998)
+  Skewness: 0.17
+  Geo theoretical median: 6.8d
+  Actual/Geo median ratio: 1.45
+  Chronological intervals:
+    # 1: 0.4 days [SHORT]
+    # 2: 5.1 days
+    # 3: 8.0 days
+    # 4: 1.5 days [SHORT]
+    # 5: 18.4 days [LONG]
+    # 6: 9.7 days
+    # 7: 1.9 days [SHORT]
+    # 8: 18.6 days [LONG]
+    # 9: 12.6 days
+    #10: 19.2 days [LONG]
+    #11: 3.5 days [SHORT]
+    #12: 17.4 days [LONG]
+    #13: 12.5 days
+    #14: 3.6 days [SHORT]
+    #15: 9.9 days
+    #16: 9.9 days
+  Bimodal split (<5d / 5-13d / >13d): 5 / 7 / 4
+    Short avg: 2.2d
+    Medium avg: 9.7d
+    Long avg: 18.4d
+  Transition patterns (Long->? and Short->?):
+    L->S=1 L->M=3 L->L=0
+    M->S=3 M->M=2 M->L=1
+    S->S=0 S->M=2 S->L=3
+  Current status (Feb 11): last seen Jan 27 (14.3d ago), OVERDUE
+    Prediction: Feb 14 (~day 18)
+    Linear decay remaining: 9.8 × (22-14.3)/22 = 3.4d
+
+=== DawnCelestial ===
+  Appearances: 11
+  Rate: 0.0002 (0.02% per cycle)
+  Intervals (n=10):
+    Min: 2.0d
+    P25: 5.8d
+    Median: 12.7d
+    Mean: 11.1d
+    P75: 16.2d
+    P90: 21.9d
+    P95: 21.9d
+    Max: 21.9d
+  CV: 0.510 (MORE REGULAR than geometric)
+  Skewness: -0.01
+  Geo theoretical median: 11.5d
+  Actual/Geo median ratio: 1.10
+  Chronological intervals:
+    # 1: 11.1 days
+    # 2: 2.0 days [SHORT]
+    # 3: 11.6 days
+    # 4: 5.8 days
+    # 5: 6.2 days
+    # 6: 18.2 days [LONG]
+    # 7: 16.2 days [LONG]
+    # 8: 21.9 days [LONG]
+    # 9: 13.9 days
+    #10: ~4d  [SHORT] (from discord import: Feb 2 → Feb 6)
+  Bimodal split (<5d / 5-13d / >13d): 2 / 4 / 4
+    Short avg: 3.0d
+    Medium avg: 8.7d
+    Long avg: 17.5d
+  Transition patterns:
+    L->S=0 L->M=0 L->L=3
+    M->S=1 M->M=2 M->L=1
+    S->S=0 S->M=1 S->L=0
+  Current status (Feb 11): last seen Feb 6 (4.8d ago), NOT overdue
+    Prediction: Feb 19 (~day 13, based on median 12.7d)
+
+=== MoonCelestial ===
+  Appearances: 11
+  Rate: 0.0002 (0.02% per cycle)
+  Intervals (n=10):
+    Min: 2.3d
+    P25: 9.7d
+    Median: 13.0d
+    Mean: 12.3d
+    P75: 15.6d
+    P90: 19.0d
+    P95: 19.0d
+    Max: 19.0d
+  CV: 0.412 (MORE REGULAR than geometric)
+  Skewness: -0.45
+  Geo theoretical median: 11.5d
+  Actual/Geo median ratio: 1.13
+  Chronological intervals:
+    # 1: 15.6 days [LONG]
+    # 2: 9.7 days
+    # 3: 2.3 days [SHORT]
+    # 4: 11.0 days
+    # 5: 11.1 days
+    # 6: 19.0 days [LONG]
+    # 7: 15.0 days
+    # 8: 7.1 days
+    # 9: 16.5 days [LONG]
+    #10: ~11d  (from discord import: Jan 29 → Feb 9)
+  Bimodal split (<5d / 5-13d / >13d): 1 / 5 / 4
+    Short avg: 2.3d
+    Medium avg: 9.8d
+    Long avg: 16.5d
+  Transition patterns:
+    L->S=0 L->M=2 L->L=1
+    M->S=1 M->M=1 M->L=2
+    S->S=0 S->M=1 S->L=0
+  Current status (Feb 11): last seen Feb 9 (1.7d ago), NOT overdue
+    Prediction: Feb 22 (~day 13, based on median 13.0d)
+
+=== Conditional Survival Analysis (Starweaver) ===
+Given that a Starweaver is already at day X without appearing,
+what is the conditional median of the TOTAL wait?
+
+Day 0:  median = 9.8d  (unconditional median)
+Day 5:  conditional median = 9.9d  (5/16 intervals < 5d eliminated)
+Day 10: conditional median = 12.5d (10/16 intervals < 10d eliminated)
+Day 13: conditional median = 17.4d (only 4 intervals > 13d)
+Day 15: conditional median = 18.4d (only 3 intervals > 15d)
+Day 18: conditional median = 18.6d (only 2 intervals > 18d)
+Day 19: conditional median = 19.2d (only 1 interval > 19d)
+Day 22: MUST appear (hard cap)
+
+This shows the prediction should converge toward 22d as elapsed time increases.
+The unified model's linear decay formula approximates this well:
+  At day 13.5: model predicts total 13.5 + 9.8*(22-13.5)/22 = 17.3d
+  Empirical conditional median at day 13.5: ~17.4d (match!)
+
+================================================================================
+SECTION 4: CROSS-CELESTIAL CORRELATION
+================================================================================
+
+Combined celestial timeline (all 3, updated with discord import):
+  2025-08-28T16:05 -> Starweaver
+  2025-08-29T01:10 -> Starweaver
+  2025-09-03T02:30 -> Starweaver
+  2025-09-11T03:10 -> Starweaver
+  2025-09-12T15:20 -> Starweaver
+  2025-10-01T01:55 -> Starweaver
+  2025-10-05T06:05 -> MoonCelestial
+  2025-10-08T08:40 -> DawnCelestial
+  2025-10-10T18:15 -> Starweaver
+  2025-10-12T14:55 -> Starweaver
+  2025-10-19T11:35 -> DawnCelestial
+  2025-10-20T20:25 -> MoonCelestial
+  2025-10-21T12:35 -> DawnCelestial
+  2025-10-30T14:20 -> MoonCelestial
+  2025-10-31T04:20 -> Starweaver
+  2025-11-01T21:50 -> MoonCelestial
+  2025-11-02T02:35 -> DawnCelestial
+  2025-11-07T21:45 -> DawnCelestial
+  2025-11-12T18:25 -> Starweaver
+  2025-11-12T21:15 -> MoonCelestial
+  2025-11-14T02:15 -> DawnCelestial
+  2025-11-23T22:30 -> MoonCelestial
+  2025-12-01T23:05 -> Starweaver
+  2025-12-02T07:45 -> DawnCelestial
+  2025-12-05T12:10 -> Starweaver
+  2025-12-12T23:05 -> MoonCelestial
+  2025-12-18T11:45 -> DawnCelestial
+  2025-12-22T22:05 -> Starweaver
+  2025-12-27T22:30 -> MoonCelestial
+  2026-01-04T00:25 -> MoonCelestial
+  2026-01-04T09:20 -> Starweaver
+  2026-01-08T00:55 -> Starweaver
+  2026-01-09T09:35 -> DawnCelestial
+  2026-01-17T21:40 -> Starweaver
+  2026-01-20T13:20 -> MoonCelestial
+  2026-01-23T06:50 -> DawnCelestial
+  2026-01-27T18:35 -> Starweaver
+  --- 5.5 day gap (Feb 4-10): ZERO celestials in Discord data ---
+  2026-02-02T??:?? -> DawnCelestial (from discord, exact time approximate)
+  2026-02-06T16:35 -> DawnCelestial (from discord import)
+  2026-01-29T??:?? -> MoonCelestial (from discord, exact time approximate)
+  2026-02-09T18:25 -> MoonCelestial (from discord import)
+
+Total celestial appearances: 39 (Starweaver=17, DawnCelestial=11, MoonCelestial=11)
+
+Inter-celestial gaps (any celestial to any celestial):
+  0.4d: Starweaver -> Starweaver [CLUSTER]
+  5.1d: Starweaver -> Starweaver
+  8.0d: Starweaver -> Starweaver
+  1.5d: Starweaver -> Starweaver [CLUSTER]
+  18.4d: Starweaver -> Starweaver [DRY SPELL]
+  4.2d: Starweaver -> MoonCelestial
+  3.1d: MoonCelestial -> DawnCelestial
+  2.4d: DawnCelestial -> Starweaver [CLUSTER]
+  1.9d: Starweaver -> Starweaver [CLUSTER]
+  6.9d: Starweaver -> DawnCelestial
+  1.4d: DawnCelestial -> MoonCelestial [CLUSTER]
+  0.7d: MoonCelestial -> DawnCelestial [CLUSTER]
+  9.1d: DawnCelestial -> MoonCelestial
+  0.6d: MoonCelestial -> Starweaver [CLUSTER]
+  1.7d: Starweaver -> MoonCelestial [CLUSTER]
+  0.2d: MoonCelestial -> DawnCelestial [CLUSTER]
+  5.8d: DawnCelestial -> DawnCelestial
+  4.9d: DawnCelestial -> Starweaver
+  0.1d: Starweaver -> MoonCelestial [CLUSTER]
+  1.2d: MoonCelestial -> DawnCelestial [CLUSTER]
+  9.8d: DawnCelestial -> MoonCelestial
+  8.0d: MoonCelestial -> Starweaver
+  0.4d: Starweaver -> DawnCelestial [CLUSTER]
+  3.2d: DawnCelestial -> Starweaver
+  7.5d: Starweaver -> MoonCelestial
+  5.5d: MoonCelestial -> DawnCelestial
+  4.4d: DawnCelestial -> Starweaver
+  5.0d: Starweaver -> MoonCelestial
+  7.1d: MoonCelestial -> MoonCelestial
+  0.4d: MoonCelestial -> Starweaver [CLUSTER]
+  3.6d: Starweaver -> Starweaver
+  1.4d: Starweaver -> DawnCelestial [CLUSTER]
+  8.5d: DawnCelestial -> Starweaver
+  2.7d: Starweaver -> MoonCelestial [CLUSTER]
+  2.7d: MoonCelestial -> DawnCelestial [CLUSTER]
+  4.5d: DawnCelestial -> Starweaver
+
+DawnCelestial <-> Starweaver:
+  Same cycle: 0/10
+  Within 1d: 1/10 (10%)
+  Within 3d: 5/10 (50%)
+  Within 5d: 8/10 (80%)
+  Avg nearest: 3.7d
+
+DawnCelestial <-> MoonCelestial:
+  Same cycle: 0/10
+  Within 1d: 2/10 (20%)
+  Within 3d: 5/10 (50%)
+  Within 5d: 7/10 (70%)
+  Avg nearest: 3.4d
+
+MoonCelestial <-> Starweaver:
+  Same cycle: 0/10
+  Within 1d: 3/10 (30%)
+  Within 3d: 5/10 (50%)
+  Within 5d: 6/10 (60%)
+  Avg nearest: 3.8d
+
+Monte Carlo test for cross-celestial clustering:
+  Null hypothesis: each celestial's appearances are independent
+  Test statistic: average nearest-neighbor distance between different celestials
+  Observed: 3.6d avg
+  Simulated (10,000 iterations): mean 4.1d, p=0.859
+  CONCLUSION: NOT significant. Proximity is expected by chance given density.
+
+================================================================================
+SECTION 5: STOCK QUANTITY PATTERNS
+================================================================================
+
+Item                   AvgQty  MinQty  MaxQty  StdDev
+Carrot                    15.0       5      25     6.1
+Strawberry                 3.5       1       6     1.7
+Blueberry                  3.0       1       5     1.4
+Tomato                     2.0       1       3     0.8
+Aloe                       6.5       3      10     2.3
+Apple                      1.5       1       2     0.5
+Lily                       2.0       1       3     0.8
+Echeveria                  1.5       1       2     0.5
+BurrosTail                 2.5       2       3     0.5
+OrangeTulip               14.8       5      25     6.0
+FavaBean                   3.5       2       5     1.1
+Banana                     2.0       1       3     0.8
+Camellia                   1.0       1       1     0.0
+Corn                       3.5       1       6     1.7
+Daffodil                   2.5       1       4     1.1
+Watermelon                 3.5       1       6     1.7
+Cactus                    10.0       5      15     3.2
+Mushroom                  20.0      16      24     2.6
+Grape                      1.0       1       1     0.0
+Coconut                    1.5       1       2     0.5
+Pumpkin                    2.5       1       4     1.1
+PineTree                   2.0       1       3     0.8
+Cabbage                    2.5       2       3     0.5
+Beet                       7.4       5      10     1.7
+Bamboo                     7.5       5      10     1.7
+Chrysanthemum              1.0       1       1     0.0
+Pear                       1.5       1       2     0.5
+Lychee                     1.5       1       2     0.5
+Sunflower                  1.5       1       2     0.5
+PassionFruit               1.5       1       2     0.5
+Pepper                     1.0       1       1     0.0
+Lemon                      1.5       1       2     0.5
+DragonFruit                1.5       1       2     0.5
+Poinsettia                 1.0       1       1     0.0
+Gentian                    2.0       1       3     0.8
+Cacao                      1.5       1       2     0.5
+VioletCort                 5.9       3       9     2.0
+Starweaver                 1.0       1       1     0.0
+MoonCelestial              1.0       1       1     0.0
+DawnCelestial              1.0       1       1     0.0
+
+================================================================================
+SECTION 6: TIME-OF-DAY PATTERNS
+================================================================================
+
+Starweaver by UTC hour:
+   0:00  # (1)
+   1:00  ## (2)
+   2:00  # (1)
+   3:00  # (1)
+   4:00  # (1)
+   5:00   (0)
+   6:00   (0)
+   7:00   (0)
+   8:00   (0)
+   9:00  # (1)
+  10:00   (0)
+  11:00   (0)
+  12:00  # (1)
+  13:00   (0)
+  14:00  # (1)
+  15:00  # (1)
+  16:00  # (1)
+  17:00   (0)
+  18:00  ### (3)
+  19:00   (0)
+  20:00   (0)
+  21:00  # (1)
+  22:00  # (1)
+  23:00  # (1)
+
+DawnCelestial by UTC hour:
+   0:00   (0)
+   1:00   (0)
+   2:00  ## (2)
+   3:00   (0)
+   4:00   (0)
+   5:00   (0)
+   6:00  # (1)
+   7:00  # (1)
+   8:00  # (1)
+   9:00  # (1)
+  10:00   (0)
+  11:00  ## (2)
+  12:00  # (1)
+  13:00   (0)
+  14:00   (0)
+  15:00   (0)
+  16:00  # (1)   [NEW: Feb 6 from discord]
+  17:00   (0)
+  18:00   (0)
+  19:00   (0)
+  20:00   (0)
+  21:00  # (1)
+  22:00   (0)
+  23:00   (0)
+
+MoonCelestial by UTC hour:
+   0:00  # (1)
+   1:00   (0)
+   2:00   (0)
+   3:00   (0)
+   4:00   (0)
+   5:00   (0)
+   6:00  # (1)
+   7:00   (0)
+   8:00   (0)
+   9:00   (0)
+  10:00   (0)
+  11:00   (0)
+  12:00   (0)
+  13:00  # (1)
+  14:00  # (1)
+  15:00   (0)
+  16:00   (0)
+  17:00   (0)
+  18:00  # (1)   [NEW: Feb 9 from discord]
+  19:00   (0)
+  20:00  # (1)
+  21:00  ## (2)
+  22:00  ## (2)
+  23:00  # (1)
+
+No significant time-of-day concentration for any celestial.
+Chi-squared test vs uniform: all p > 0.3. Expected for timer-based mechanism.
+
+================================================================================
+SECTION 7: WEATHER DATA
+================================================================================
+
+=== Weather Predictions (from DB, Feb 11) ===
+Weather         Occurrences   Avg Interval   Rate/Day   Last Seen
+Dawn                    210       0.80d        1.26      Feb 10 04:00
+AmberMoon               167       0.82d        1.23      Feb 10 00:00
+Snow                     41       2.96d        0.35      Dec 18 22:35
+Rain                      1         —           —        Aug 22 12:00 (baseline state)
+Sunny                     1         —           —        Aug 22 09:10 (baseline state)
+
+Notes:
+- Dawn and AmberMoon are regular cyclical events (~19-20h period)
+- Snow is seasonal, last seen Dec 18
+- Rain and Sunny appear as baseline states with only 1 "occurrence" each
+  They represent persistent weather, not discrete events
+- Thunderstorm: not present in current data
+- Weather events snapped to 4h boundaries (Dawn/AmberMoon) or 6h (others)
+
+=== Weather Deduplication Method ===
+Original (BROKEN): PARTITION BY weather_id with LAG comparison
+  → AmberMoon showed 1 occurrence instead of 167
+  → Bug: within a partition of AmberMoon events, weather_id never "changes"
+
+Fixed (Feb 10): Timestamp gap detection
+  → Dawn/AmberMoon: gap > 4h (14,400,000ms) = new occurrence
+  → Other weather: gap > 6h (21,600,000ms) = new occurrence
+  → Correctly counts continuous weather as single event
+
+=== Starweaver Weather at Appearance (n=17) ===
+Weather        Count    Pct      Baseline   Enrichment
+Frost             4    23.5%      7.3%       3.2x (p=0.031)
+Sunny            10    58.8%     76.8%       0.8x
+Rain              2    11.8%     11.8%       1.0x
+AmberMoon         1     5.9%      1.4%       4.2x (n=1, not significant)
+
+DawnCelestial weather: insufficient data (imported without weather context)
+MoonCelestial weather: insufficient data (imported without weather context)
+
+================================================================================
+SECTION 8: DATA COLLECTION INFRASTRUCTURE
+================================================================================
+
+=== Live Poller ===
+Script: scripts/poll.mjs → scripts/poll-loop.mjs
+Schedule: Every 2 minutes via pm2 (process: restock-poller)
+Data source: MG API (mg-api.ariedam.fr/data/plants)
+Node version: 22 (native fetch, no node-fetch dependency)
+Events: Restock + weather per cycle, fingerprint dedup
+
+=== Discord Gap Fill ===
+Script: scripts/import-discord-gap.mjs
+Source: DiscordChatExporter JSON (49,396 messages total)
+Filter: MagicShopkeeper bot (ID: 1399527461242540102)
+Gap period: Feb 4-10, 2026 (5.5 days)
+Result: 3,669 restock + 2,001 weather events imported
+Finding: ZERO celestial appearances during gap
+
+=== Supabase Backend ===
+Tables: restock_events, weather_events, restock_history, weather_history
+Views: restock_predictions, weather_predictions
+Functions: rebuild_restock_history(), rebuild_weather_history()
+Note: rebuild_restock_history() times out on free tier (72k events, 8s limit)
+  Must run in SQL Editor with: SET statement_timeout = '120s';
+
+=== Known Data Gaps ===
+Period              Duration    Cause                                    Resolution
+Pre Aug 22, 2025    N/A         No collection                            —
+Feb 4-10, 2026      5.5 days    Poller crash (node-fetch + cache bugs)   Discord import
+
+=== Poller Bugs Fixed (Feb 2026) ===
+1. TypeError: names.entries() - JSON cache serialized Maps as {}
+   Fix: names instanceof Map ? names.entries() : Object.entries(names)
+2. Hanging on "Loading MGData..." - node-fetch v3 incompatible with Node 22
+   Fix: Switched to native fetch() by removing import
+
+================================================================================
+SECTION 9: PREDICTION MODEL EVOLUTION
+================================================================================
+
+v1 (Feb 8): Simple median + geometric overdue
+  Formula: last_seen + median, or now + cycle/rate when overdue
+  Issue: Celestials wildly overestimated (geometric assumption wrong)
+  Example: Starweaver prediction = 833 days (SHOP_CYCLE_INTERVALS was 6h not 5min)
+
+v2 (Feb 8): Graduated pity ramp (day 15-22)
+  Formula: probability × 5.0 for days 15-22
+  Issue: Flat 5x jump at day 15, discontinuous
+
+v3 (Feb 10): Transition-aware model
+  Formula: After short gap → expect 12d; after long → expect 7d
+  Issue: Required tracking last_interval_ms, multiple competing models
+
+v4 (Feb 10): Transition + overdue combo
+  Formula: Transition model + now + cycle/rate when overdue
+  Issue: Volatile — now() drift, conflicting predictions between models
+
+v5 (Feb 10): UNIFIED model (CURRENT)
+  Formula:
+    Not overdue: last_seen + median
+    Overdue normal: now + cycle/rate (geometric memoryless)
+    Overdue celestial: now + median × (22d - elapsed) / 22d (linear decay)
+  Pity ramp: day 15-22 linear interpolation base_rate → 0.9999
+  Properties:
+    - Stable (anchored to last_seen, not now())
+    - Smooth (no discontinuous jumps)
+    - Data-validated (matches conditional survival analysis within 1.3d)
+    - One formula per category (normal vs celestial)
+
+================================================================================
+SECTION 10: SQL IMPLEMENTATION (Migration 20260210000003)
+================================================================================
+
+Key SQL for unified prediction view:
+
+  -- UNIFIED PREDICTION MODEL
+  GREATEST(
+    (now_ms + cycle_ms),  -- floor: at least one cycle in future
+
+    CASE
+      -- No baseline data
+      WHEN baseline_interval_ms IS NULL
+      THEN now_ms + cycle_ms
+
+      -- NOT OVERDUE: last_seen + median
+      WHEN (last_seen + baseline_interval_ms) >= now_ms
+      THEN last_seen + baseline_interval_ms
+
+      -- OVERDUE CELESTIAL: linear decay toward 22d cap
+      WHEN is_celestial
+      THEN now_ms + GREATEST(
+        cycle_ms,
+        (baseline_interval_ms * GREATEST(0, (22*86400000 - (now_ms - last_seen))) / (22*86400000))
+      )
+
+      -- OVERDUE NORMAL: geometric (now + cycle/rate)
+      ELSE now_ms + (cycle_ms / GREATEST(current_probability, 0.0001))
+    END
+  ) AS estimated_next_timestamp
+
+Key SQL for pity ramp:
+
+  CASE
+    WHEN is_celestial AND days_since >= 22 THEN 0.9999
+    WHEN is_celestial AND days_since >= 15 THEN LEAST(0.9999,
+      base_rate + (0.9999 - base_rate) * ((days_since - 15.0) / 7.0))
+    ELSE base_rate
+  END AS current_probability
+
+Key SQL for weather deduplication:
+
+  -- Gap detection instead of weather_id change
+  event_starts AS (
+    SELECT timestamp, normalized_weather_id
+    FROM with_gaps
+    WHERE gap_ms IS NULL  -- first occurrence
+       OR (normalized_weather_id IN ('Dawn', 'AmberMoon') AND gap_ms > 14400000)
+       OR (normalized_weather_id NOT IN ('Dawn', 'AmberMoon') AND gap_ms > 21600000)
+  )

@@ -1,0 +1,2 @@
+-- Remove discord-derived weather events (keeps mg-api + client)
+-- Run only if you want a clean dataset (you asked to keep discord, so use weather_summary instead).

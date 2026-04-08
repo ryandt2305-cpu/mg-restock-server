@@ -1,0 +1,8 @@
+[functions.restock-history]
+verify_jwt = false
+
+[functions.restock-poll]
+verify_jwt = false
+
+[functions.weather-events]
+verify_jwt = false
