@@ -8,5 +8,11 @@ restock examples/
 *.log
 .DS_Store
 
+# local env
+.env
+
+# supabase cli temp files (contain project ref, pooler url)
+supabase/.temp/
+
 # keep data + scripts + workflow + package files tracked
 

@@ -11,16 +11,19 @@
 
 SELECT cron.unschedule('poll-restock');
 
+-- NOTE: Replace <SERVICE_ROLE_JWT> and <POLL_SECRET> with your actual values from
+-- Supabase Dashboard → Project Settings → API and your vault secret respectively.
+-- Do not commit real credentials here.
 SELECT cron.schedule(
   'poll-restock',
   '*/5 * * * *',
   $$
   SELECT net.http_post(
-    url := 'https://xjuvryjgrjchbhjixwzh.supabase.co/functions/v1/restock-poll',
+    url := '<SUPABASE_PROJECT_URL>/functions/v1/restock-poll',
     headers := jsonb_build_object(
-      'Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqdXZyeWpncmpjaGJoaml4d3poIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDEwNjI4MywiZXhwIjoyMDg1NjgyMjgzfQ._wJgsTkz8RH3aZCyU53hPtLsNcq8zqGCE4cq8Stf75w',
+      'Authorization', 'Bearer <SERVICE_ROLE_JWT>',
       'Content-Type', 'application/json',
-      'x-poll-secret', '36f79893-0668-48f3-ba40-0ecf79ab10ba'
+      'x-poll-secret', '<POLL_SECRET>'
     ),
     body := '{}'::jsonb
   );
