@@ -2,7 +2,7 @@ name: Poll Shops
 
 on:
   schedule:
-    - cron: '*/1 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -10,7 +10,7 @@ permissions:
 
 concurrency:
   group: poll-shops
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   poll:
