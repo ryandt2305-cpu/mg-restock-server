@@ -19,7 +19,10 @@ select
   coalesce(source, 'null') as source,
   count(*) as rows_24h
 from public.restock_events
-where timestamp >= (extract(epoch from now()) * 1000 - 24 * 3600000)
+where timestamp >= (
+  (extract(epoch from now()) * 1000)::bigint
+  - (24::bigint * 3600000)
+)
 group by source
 order by rows_24h desc;
 
@@ -47,7 +50,10 @@ with ordered as (
     lag(timestamp) over (partition by shop_type order by timestamp) as prev_ts
   from public.restock_events
   where source = 'mg-api'
-    and timestamp >= (extract(epoch from now()) * 1000 - 30 * 24 * 3600000)
+    and timestamp >= (
+      (extract(epoch from now()) * 1000)::bigint
+      - (30::bigint * 24 * 3600000)
+    )
 ),
 gaps as (
   select
@@ -141,5 +147,7 @@ select
   current_probability
 from public.restock_predictions
 where last_seen is not null
-  and (extract(epoch from now()) * 1000 - last_seen) > 48 * 3600000
+  and (
+    (extract(epoch from now()) * 1000)::bigint - last_seen
+  ) > (48::bigint * 3600000)
 order by age_hours desc;
