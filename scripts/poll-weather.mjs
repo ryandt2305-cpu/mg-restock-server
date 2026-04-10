@@ -42,6 +42,9 @@ const SUPABASE_HEADERS = SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY
 const MG_API_BASE = process.env.MG_API_BASE || "https://mg-api.ariedam.fr";
 const WEATHER_POLL_MS = Number(process.env.WEATHER_POLL_MS || 60000);
 const FETCH_TIMEOUT_MS = Number(process.env.FETCH_TIMEOUT_MS || 15000);
+const WEATHER_ONE_SHOT = process.env.WEATHER_ONE_SHOT
+  ? process.env.WEATHER_ONE_SHOT !== "0"
+  : process.env.GITHUB_ACTIONS === "true";
 
 const WEATHER_ALIASES = new Map([
   ["rain", "Rain"],
@@ -162,6 +165,7 @@ async function pollLoop() {
       const timestamp = extractTimestamp(payload);
 
       if (state.lastTimestamp && timestamp <= state.lastTimestamp) {
+        if (WEATHER_ONE_SHOT) break;
         await new Promise((resolve) => setTimeout(resolve, WEATHER_POLL_MS));
         continue;
       }
@@ -185,6 +189,7 @@ async function pollLoop() {
     } catch (err) {
       console.error("[WeatherPoller] Error:", err?.message ?? err);
     }
+    if (WEATHER_ONE_SHOT) break;
     await new Promise((resolve) => setTimeout(resolve, WEATHER_POLL_MS));
   }
 }
