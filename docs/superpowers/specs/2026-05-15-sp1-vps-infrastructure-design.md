@@ -9,6 +9,18 @@
 
 Provision a hardened Hetzner CX22 VPS with Docker Compose, automated CI/CD, and uptime monitoring. The server hosts no application logic — it exists solely as the deployment target for SP2 (Discord Bot Core).
 
+## Repo
+
+The Discord bot lives in its own repo: `C:\Users\ryand\Feeder-Extension\Gemini-discord-bot` (GitHub: `Gemini-discord-bot`). This keeps it isolated from the Gemini-server data pipeline with its own CI/CD, TypeScript config, and Claude Code optimization (CLAUDE.md, rules, settings).
+
+### Project Tooling
+- TypeScript 5.x (strict mode, `noUncheckedIndexedAccess`)
+- ESLint 9 (flat config, typescript-eslint strict)
+- Prettier
+- vitest (unit tests, coverage via v8)
+- CI workflow gates PRs on: typecheck + lint + format check + test
+- CLAUDE.md + `.claude/rules/core.md` for Claude Code session context
+
 ## Server Specification
 
 | Property | Value |
