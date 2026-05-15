@@ -11,7 +11,7 @@ Provision a hardened Hetzner CX22 VPS with Docker Compose, automated CI/CD, and 
 
 ## Repo
 
-The Discord bot lives in its own repo: `C:\Users\ryand\Feeder-Extension\Gemini-discord-bot` (GitHub: `Gemini-discord-bot`). This keeps it isolated from the Gemini-server data pipeline with its own CI/CD, TypeScript config, and Claude Code optimization (CLAUDE.md, rules, settings).
+The Discord bot lives in its own repo: `C:\Users\ryand\Feeder-Extension\mgtokyo-discord-bot` (GitHub: `mgtokyo-discord-bot`). This keeps it isolated from the Gemini-server data pipeline with its own CI/CD, TypeScript config, and Claude Code optimization (CLAUDE.md, rules, settings).
 
 ### Project Tooling
 - TypeScript 5.x (strict mode, `noUncheckedIndexedAccess`)
@@ -68,7 +68,7 @@ Single service in `docker-compose.yml`:
 ```yaml
 services:
   bot:
-    image: ghcr.io/<owner>/gemini-discord-bot:latest
+    image: ghcr.io/<owner>/mgtokyo-discord-bot:latest
     restart: unless-stopped
     env_file: .env
     ports:

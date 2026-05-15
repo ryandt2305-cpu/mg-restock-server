@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Create the `Gemini-discord-bot` repo with production-grade TypeScript tooling, Claude Code optimization, Docker Compose deployment, GitHub Actions CI/CD, and provision a hardened Hetzner CX22 VPS — ready for SP2 to build the bot on.
+**Goal:** Create the `mgtokyo-discord-bot` repo with production-grade TypeScript tooling, Claude Code optimization, Docker Compose deployment, GitHub Actions CI/CD, and provision a hardened Hetzner CX22 VPS — ready for SP2 to build the bot on.
 
-**Architecture:** Standalone repo at `C:\Users\ryand\Feeder-Extension\Gemini-discord-bot`. TypeScript strict, vitest, ESLint, Prettier. Docker Compose on a Hetzner CX22 (Ubuntu 24.04, US East). GitHub Actions runs CI checks (typecheck + lint + test) on every PR, and auto-deploys to VPS on merge to main. UptimeRobot pings `/health` and alerts via Discord webhook.
+**Architecture:** Standalone repo at `C:\Users\ryand\Feeder-Extension\mgtokyo-discord-bot`. TypeScript strict, vitest, ESLint, Prettier. Docker Compose on a Hetzner CX22 (Ubuntu 24.04, US East). GitHub Actions runs CI checks (typecheck + lint + test) on every PR, and auto-deploys to VPS on merge to main. UptimeRobot pings `/health` and alerts via Discord webhook.
 
 **Tech Stack:** TypeScript 5.x (strict), Node.js 20, vitest, ESLint 9 (flat config), Prettier, Docker + Docker Compose, GitHub Actions, GHCR, Caddy (optional), UptimeRobot
 
@@ -14,10 +14,10 @@
 
 ## File Structure
 
-New repo: `C:\Users\ryand\Feeder-Extension\Gemini-discord-bot`
+New repo: `C:\Users\ryand\Feeder-Extension\mgtokyo-discord-bot`
 
 ```
-Gemini-discord-bot/
+mgtokyo-discord-bot/
 ├── .claude/
 │   ├── settings.local.json          # Claude Code local settings
 │   └── rules/
@@ -52,14 +52,14 @@ Gemini-discord-bot/
 ### Task 1: Initialize Repo and Git
 
 **Files:**
-- Create: `C:\Users\ryand\Feeder-Extension\Gemini-discord-bot\` (directory)
+- Create: `C:\Users\ryand\Feeder-Extension\mgtokyo-discord-bot\` (directory)
 - Create: `.gitignore`
 
 - [ ] **Step 1: Create directory and init git**
 
 ```bash
-mkdir -p "C:\Users\ryand\Feeder-Extension\Gemini-discord-bot"
-cd "C:\Users\ryand\Feeder-Extension\Gemini-discord-bot"
+mkdir -p "C:\Users\ryand\Feeder-Extension\mgtokyo-discord-bot"
+cd "C:\Users\ryand\Feeder-Extension\mgtokyo-discord-bot"
 git init
 ```
 
@@ -96,7 +96,7 @@ git commit -m "chore: initialize repo"
 
 ```json
 {
-  "name": "gemini-discord-bot",
+  "name": "mgtokyo-discord-bot",
   "version": "0.1.0",
   "description": "Discord bot for MagicGarden restock tracking, predictions, and weather alerts",
   "private": true,
@@ -227,7 +227,7 @@ export default defineConfig({
 - [ ] **Step 6: Install dependencies**
 
 ```bash
-cd "C:\Users\ryand\Feeder-Extension\Gemini-discord-bot"
+cd "C:\Users\ryand\Feeder-Extension\mgtokyo-discord-bot"
 npm install
 ```
 
@@ -260,7 +260,7 @@ git commit -m "chore: add TypeScript, ESLint, Prettier, and vitest tooling"
 - [ ] **Step 1: Create `CLAUDE.md`**
 
 ```markdown
-# Gemini Discord Bot (Claude Code)
+# MGTokyo Discord Bot (Claude Code)
 
 Project memory for Claude Code. Keep it short and actionable.
 
@@ -558,7 +558,7 @@ CMD ["node", "dist/health.js"]
 services:
   bot:
     build: .
-    image: ghcr.io/ryandt2305-cpu/gemini-discord-bot:latest
+    image: ghcr.io/ryandt2305-cpu/mgtokyo-discord-bot:latest
     restart: unless-stopped
     env_file: .env
     ports:
@@ -752,7 +752,7 @@ concurrency:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/gemini-discord-bot
+  IMAGE_NAME: ${{ github.repository_owner }}/mgtokyo-discord-bot
 
 jobs:
   ci:
@@ -809,19 +809,19 @@ git commit -m "ci: add CI checks (typecheck + lint + test) and deploy workflow"
 - [ ] **Step 1: Create GitHub repo**
 
 ```bash
-cd "C:\Users\ryand\Feeder-Extension\Gemini-discord-bot"
-gh repo create Gemini-discord-bot --private --source=. --push
+cd "C:\Users\ryand\Feeder-Extension\mgtokyo-discord-bot"
+gh repo create mgtokyo-discord-bot --private --source=. --push
 ```
 
 If the repo already exists or you prefer to create it via the GitHub UI, use:
 ```bash
-git remote add origin https://github.com/<owner>/Gemini-discord-bot.git
+git remote add origin https://github.com/<owner>/mgtokyo-discord-bot.git
 git push -u origin main
 ```
 
 - [ ] **Step 2: Configure branch protection (recommended)**
 
-Go to: `https://github.com/<owner>/Gemini-discord-bot/settings/branches`
+Go to: `https://github.com/<owner>/mgtokyo-discord-bot/settings/branches`
 
 Add rule for `main`:
 - Require status checks to pass before merging: **check** (from ci.yml)
@@ -851,7 +851,7 @@ This task is manual — it happens in the Hetzner Cloud console and via SSH.
    - **Image:** Ubuntu 24.04
    - **Type:** CX22 (2 vCPU, 4 GB RAM, 40 GB)
    - **SSH key:** Select your key
-   - **Name:** `gemini-bot`
+   - **Name:** `mgtokyo-bot`
 5. Note the IP address
 
 - [ ] **Step 2: SSH in and create the deploy user**
@@ -966,28 +966,28 @@ chmod +x /home/deploy/bot/deploy.sh
 - [ ] **Step 1: Generate a deploy SSH key**
 
 ```bash
-ssh-keygen -t ed25519 -f ~/.ssh/gemini-bot-deploy -N "" -C "github-actions-deploy"
+ssh-keygen -t ed25519 -f ~/.ssh/mgtokyo-bot-deploy -N "" -C "github-actions-deploy"
 ```
 
 - [ ] **Step 2: Add the public key to the VPS**
 
 ```bash
-ssh-copy-id -i ~/.ssh/gemini-bot-deploy.pub deploy@<VPS_IP>
+ssh-copy-id -i ~/.ssh/mgtokyo-bot-deploy.pub deploy@<VPS_IP>
 ```
 
-- [ ] **Step 3: Add secrets to the Gemini-discord-bot GitHub repo**
+- [ ] **Step 3: Add secrets to the mgtokyo-discord-bot GitHub repo**
 
-Go to: `https://github.com/<owner>/Gemini-discord-bot/settings/secrets/actions`
+Go to: `https://github.com/<owner>/mgtokyo-discord-bot/settings/secrets/actions`
 
 | Secret | Value |
 |--------|-------|
 | `VPS_HOST` | The Hetzner VPS IP address |
 | `VPS_USER` | `deploy` |
-| `VPS_SSH_KEY` | Contents of `~/.ssh/gemini-bot-deploy` (private key) |
+| `VPS_SSH_KEY` | Contents of `~/.ssh/mgtokyo-bot-deploy` (private key) |
 
 - [ ] **Step 4: Trigger manual deploy**
 
-Go to: `https://github.com/<owner>/Gemini-discord-bot/actions/workflows/deploy.yml`
+Go to: `https://github.com/<owner>/mgtokyo-discord-bot/actions/workflows/deploy.yml`
 
 Click **Run workflow**. Watch the workflow.
 
@@ -1016,7 +1016,7 @@ Expected: `{"ok": true, "uptime": ..., "version": "0.1.0"}`
 1. Go to https://uptimerobot.com (create free account if needed)
 2. Add New Monitor:
    - **Type:** HTTP(s)
-   - **Friendly Name:** `Gemini Discord Bot`
+   - **Friendly Name:** `MGTokyo Discord Bot`
    - **URL:** `http://<VPS_IP>:3000/health`
    - **Monitoring Interval:** 5 minutes
 3. Under Alert Contacts, add a new contact:
@@ -1056,7 +1056,7 @@ In the Gemini-server repo, update SP1:
 - **Status:** Complete
 - **Spec:** `docs/superpowers/specs/2026-05-15-sp1-vps-infrastructure-design.md`
 - **Plan:** `docs/superpowers/plans/2026-05-15-sp1-vps-infrastructure.md`
-- **Repo:** `Gemini-discord-bot` (separate repo)
+- **Repo:** `mgtokyo-discord-bot` (separate repo)
 - **Depends on:** Nothing (first in chain)
 - **Deliverable:** Hardened Hetzner CX22 with CI/CD and monitoring
 - **Decisions made:** Docker Compose, auto-deploy via GitHub Actions, UptimeRobot + Discord webhook monitoring, .env secrets on VPS, own repo with TypeScript strict + vitest + ESLint
@@ -1083,7 +1083,7 @@ ssh deploy@<VPS_IP> "sudo fail2ban-client status sshd"
 # 6. unattended-upgrades
 ssh deploy@<VPS_IP> "cat /etc/apt/apt.conf.d/20auto-upgrades"
 
-# 7. CI passes in Gemini-discord-bot repo
+# 7. CI passes in mgtokyo-discord-bot repo
 # (check GitHub Actions tab)
 
 # 8. UptimeRobot shows "Up"
@@ -1117,4 +1117,4 @@ git commit -m "docs: mark SP1 VPS Infrastructure as complete"
 | 11 | Manual | UptimeRobot monitoring with Discord alerts |
 | 12 | Code + Manual | Manifest update + final verification |
 
-Tasks 1–7 are code committed to the new `Gemini-discord-bot` repo. Tasks 8–11 are manual setup. Task 12 closes SP1 in the Gemini-server manifest.
+Tasks 1–7 are code committed to the new `mgtokyo-discord-bot` repo. Tasks 8–11 are manual setup. Task 12 closes SP1 in the Gemini-server manifest.
