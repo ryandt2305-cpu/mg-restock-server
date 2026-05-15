@@ -6,12 +6,12 @@
 ## Sub-Projects
 
 ### SP1: VPS Infrastructure
-- **Status:** Not started
-- **Spec:** (not yet written)
+- **Status:** Spec written, plan pending
+- **Spec:** `docs/superpowers/specs/2026-05-15-sp1-vps-infrastructure-design.md`
 - **Plan:** (not yet written)
 - **Depends on:** Nothing (first in chain)
 - **Deliverable:** Hardened Hetzner CX22 with CI/CD and monitoring
-- **Key decisions needed:** Docker vs bare systemd, monitoring stack choice
+- **Decisions made:** Docker Compose, auto-deploy via GitHub Actions, UptimeRobot + Discord webhook monitoring, .env secrets on VPS
 
 ### SP2: Discord Bot Core
 - **Status:** Not started
