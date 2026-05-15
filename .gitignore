@@ -14,5 +14,8 @@ restock examples/
 # supabase cli temp files (contain project ref, pooler url)
 supabase/.temp/
 
+# superpowers session artifacts (local only, never push)
+docs/superpowers/
+
 # keep data + scripts + workflow + package files tracked
 
