@@ -32,7 +32,7 @@ jobs:
             -H "Content-Type: application/json" \
             -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/rpc/check_restock_pipeline_health" \
             -d '{}')
-          STALE=$(echo "$RESULT" | grep -o '"is_stale":[a-z]*' | cut -d: -f2)
+          STALE=$(echo "$RESULT" | jq -r '.is_stale')
           if [ "$STALE" = "true" ]; then
             echo "ALERT: restock_history has not been updated in over 15 minutes!"
             echo "$RESULT"
