@@ -12,9 +12,13 @@ Server-side pipeline for **Gemini** that ingests live shop data and community we
 ## Architecture Overview
 
 **Inputs**
-- `https://mg-api.ariedam.fr/live/shops` (shop snapshots)
-- `https://mg-api.ariedam.fr/live/weather` (weather snapshot)
+- `https://magicgarden.gg/platform/v1/shops` (official — current stock + catalog + `nextRestockAt` per shop)
+- `https://magicgarden.gg/platform/v1/weather` (official — active weather event, `null` when none)
+- `https://mg-api.ariedam.fr/data/{plants,eggs,decors}` (static game data, used only to validate item ids in the local scripts)
 - Discord export JSON (legacy history)
+
+API reference: `Feeder-Extension/docs/superpowers/specs/2026-08-16-mg-platform-api-reference.md`.
+Shared client code: `scripts/lib/platformApi.mjs` (Node) and `supabase/functions/_shared/platformApi.ts` (Deno) — keep them in sync.
 
 **Outputs**
 - `public.restock_events` (raw restocks)
@@ -56,7 +60,8 @@ npm run clean:supabase     # Rebuild Supabase from events.json
 ```bash
 $env:SUPABASE_URL="https://YOUR_PROJECT.supabase.co"
 $env:SUPABASE_SERVICE_ROLE_KEY="YOUR_SERVICE_ROLE_KEY"
-$env:MG_API_BASE="https://mg-api.ariedam.fr"   # optional
+$env:MG_PLATFORM_API_BASE="https://magicgarden.gg/platform/v1"   # optional (official live shops/weather)
+$env:MG_API_BASE="https://mg-api.ariedam.fr"                     # optional (static /data/* game data only)
 $env:MGDATA_CACHE_MS="3600000"                 # optional (1 hour)
 $env:FETCH_TIMEOUT_MS="15000"                  # optional
 $env:LOAD_HISTORY_FROM_DB="1"                  # optional (default)
@@ -122,5 +127,6 @@ Key migrations:
 
 ## Notes
 
-- `restock_events.weather_id` is populated using `/live/weather` to support weather-aware analysis.
+- `restock_events.weather_id` is populated from the official `/platform/v1/weather` endpoint (`null` body ⇒ `Sunny`).
+- `restock_events.source` lineage values: `platform-api` (edge function, 2026-08+), `mg-api` (edge function before 2026-08), `poller` (local `scripts/poll.mjs`), plus import sources.
 - Discord data is preserved but predictions use `weather_summary` to avoid noise.

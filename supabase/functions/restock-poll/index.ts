@@ -1,6 +1,12 @@
 import { serve } from "https://deno.land/std@0.192.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { corsHeaders, preflight } from "../_shared/cors.ts";
+import {
+  DEFAULT_PLATFORM_API_BASE,
+  fetchPlatformShops,
+  fetchPlatformWeather,
+  isPreRestockStale,
+} from "../_shared/platformApi.ts";
 
 const SUPABASE_URL =
   Deno.env.get("SVC_SUPABASE_URL") ??
@@ -12,32 +18,22 @@ const SUPABASE_SERVICE_ROLE_KEY =
   "";
 const POLL_SECRET = Deno.env.get("POLL_SECRET") ?? "";
 
-const MG_API_BASE = Deno.env.get("MG_API_BASE") ?? "https://mg-api.ariedam.fr";
+// Official Magic Garden platform API (replaces mg-api.ariedam.fr /live as of 2026-08).
+// Reference: Feeder-Extension/docs/superpowers/specs/2026-08-16-mg-platform-api-reference.md
+const PLATFORM_API_BASE = Deno.env.get("MG_PLATFORM_API_BASE") ?? DEFAULT_PLATFORM_API_BASE;
 const FETCH_TIMEOUT_MS = Number(Deno.env.get("FETCH_TIMEOUT_MS") ?? 15000);
+// If the cron fires exactly on a restock boundary the API may still return the
+// pre-restock snapshot (nextRestockAt <= now). Refetch a bounded number of times.
+const STALE_RETRIES = Number(Deno.env.get("STALE_RETRIES") ?? 3);
+const STALE_DELAY_MS = Number(Deno.env.get("STALE_DELAY_MS") ?? 2000);
 
-type ShopItem = { name: string; stock: number };
-type ShopData = { secondsUntilRestock: number; items: ShopItem[] };
-type LiveShopsResponse = Record<string, ShopData>;
+/** Data-lineage tag written to restock_events.source. Was "mg-api" before 2026-08. */
+const EVENT_SOURCE = "platform-api";
 
 type RegistryEntry = {
   shop_type: string;
   cycle_interval_ms: number;
   config: Record<string, unknown>;
-};
-
-// Maps the live API weather display string to the game enum ID stored in weather_events.
-// "Clear Skies" is the API's string for no active special weather.
-// "Snow" is the display name for what the game internally calls "Frost".
-const LIVE_WEATHER_ID_MAP: Record<string, string> = {
-  "Clear Skies": "Sunny",
-  "":            "Sunny",
-  "Rain":        "Rain",
-  "Snow":        "Frost",     // API display name → game enum ID
-  "Frost":       "Frost",
-  "Dawn":        "Dawn",
-  "Amber Moon":  "AmberMoon",
-  "AmberMoon":   "AmberMoon",
-  "Thunderstorm":"Thunderstorm",
 };
 
 const VALID_WEATHER_IDS: ReadonlySet<string> = new Set([
@@ -96,16 +92,6 @@ function getClient() {
   });
 }
 
-async function fetchWithTimeout(url: string): Promise<Response> {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-  try {
-    return await fetch(url, { signal: controller.signal });
-  } finally {
-    clearTimeout(timeout);
-  }
-}
-
 function json(data: unknown, status: number, req: Request): Response {
   return new Response(JSON.stringify(data), {
     status,
@@ -129,27 +115,39 @@ serve(async (req) => {
   }
 
   try {
-    // Fetch the full /live endpoint — includes both current weather and shop inventory.
-    // Previously fetched /live/shops which omits the weather field.
-    const liveRes = await fetchWithTimeout(`${MG_API_BASE}/live`);
-    if (!liveRes.ok) {
-      return json({ ok: false, error: `MG API returned ${liveRes.status}` }, 502, req);
-    }
-    const liveData = await liveRes.json();
+    // ── Fetch official platform API (shops + weather in parallel) ─────────
+    const fetchOpts = { timeoutMs: FETCH_TIMEOUT_MS, userAgent: "Gemini-Server/restock-poll" };
+    const [shopsResult, weatherResult] = await Promise.all([
+      fetchPlatformShops(PLATFORM_API_BASE, {
+        ...fetchOpts,
+        staleRetries: STALE_RETRIES,
+        staleDelayMs: STALE_DELAY_MS,
+      }),
+      fetchPlatformWeather(PLATFORM_API_BASE, fetchOpts).catch((err) => {
+        // Weather is optional enrichment; never fail the shop poll because of it.
+        console.error("Weather fetch failed:", err instanceof Error ? err.message : String(err));
+        return { raw: null, weatherId: null as string | null, failed: true };
+      }),
+    ]);
 
-    // shops is nested under liveData.shops (vs the old /live/shops which returned the object directly)
-    const shops: LiveShopsResponse = liveData.shops ?? {};
-    const rawWeatherString: string = typeof liveData.weather === "string" ? liveData.weather : "";
+    const shops = shopsResult.shops;
+    // `now` must be taken AFTER the (possibly retried) fetch so snapping lands in the new cycle.
+    const now = Date.now();
+    const stillStale = isPreRestockStale(shops, now);
+    if (stillStale) {
+      console.warn(`Shops snapshot still pre-restock after ${shopsResult.staleRetries} retries; recording anyway.`);
+    }
+
+    // null payload => "Sunny" (documented). Unrecognised payload => null (skip weather, log raw once).
+    const weatherId = weatherResult.weatherId;
+    if (weatherId === null && weatherResult.raw !== null && weatherResult.raw !== undefined) {
+      console.warn("Unrecognised weather payload (pin the shape in platformApi.ts):", JSON.stringify(weatherResult.raw));
+    }
 
     const client = getClient();
-    const now = Date.now();
     const inserted: string[] = [];
     const skipped: string[] = [];
     const registered: string[] = [];
-
-    // Resolve weather ID before the shop loop so it's available for both
-    // restock_events inserts and ingest_restock_history RPC calls.
-    const weatherId = LIVE_WEATHER_ID_MAP[rawWeatherString] ?? null;
 
     // ── Registry lookup ─────────────────────────────────────────────────
     const registry = await fetchRegistry(client);
@@ -158,15 +156,16 @@ serve(async (req) => {
     // Iterate ALL shop keys from the API, not a hardcoded list.
     for (const shopType of Object.keys(shops)) {
       const shopData = shops[shopType];
-      if (!shopData || !Array.isArray(shopData.items) || shopData.items.length === 0) {
+      // Closed (weather-gated / event) shops report open:false with empty items.
+      if (!shopData || !shopData.open || shopData.items.length === 0) {
         skipped.push(shopType);
         continue;
       }
 
-      // Auto-register unknown shop types using secondsUntilRestock as cycle estimate
+      // Auto-register unknown shop types using time-until-restock as cycle estimate
       let entry = registry.get(shopType);
       if (!entry) {
-        const estimatedMs = shopData.secondsUntilRestock
+        const estimatedMs = shopData.secondsUntilRestock > 0
           ? roundToMinuteBoundary(shopData.secondsUntilRestock * 1000)
           : 300_000;
         const { error: regErr } = await client.rpc("register_shop_type", {
@@ -187,9 +186,10 @@ serve(async (req) => {
       const intervalMs = entry.cycle_interval_ms;
       const snappedTs = snapTimestamp(intervalMs, now);
 
+      // platformApi already dropped stock<=0; keep the explicit filter as a guard.
       const items = shopData.items
-        .filter((item) => item.name && item.stock > 0)
-        .map((item) => ({ itemId: item.name, stock: item.stock }));
+        .filter((item) => item.itemId && item.stock > 0)
+        .map((item) => ({ itemId: item.itemId, stock: item.stock }));
 
       if (items.length === 0) {
         skipped.push(shopType);
@@ -204,7 +204,7 @@ serve(async (req) => {
           timestamp: snappedTs,
           shop_type: shopType,
           items: items,
-          source: "mg-api",
+          source: EVENT_SOURCE,
           fingerprint,
           weather_id: weatherId ?? null,
         })
@@ -280,11 +280,19 @@ serve(async (req) => {
 
     return json({
       ok: true,
+      source: EVENT_SOURCE,
       inserted,
       skipped,
       registered,
       timestamp: now,
-      weather: { id: weatherId, raw: rawWeatherString, inserted: weatherInserted },
+      shops: {
+        staleRetries: shopsResult.staleRetries,
+        stillStale,
+        nextRestockAt: Object.fromEntries(
+          Object.entries(shops).map(([k, v]) => [k, v.nextRestockAtIso]),
+        ),
+      },
+      weather: { id: weatherId, raw: weatherResult.raw, inserted: weatherInserted },
     }, 200, req);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
