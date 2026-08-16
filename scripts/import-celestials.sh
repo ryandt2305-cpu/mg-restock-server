@@ -3,8 +3,9 @@
 # Import Celestial Seeds from Community Discord Logs
 # Replaces existing celestial data with authoritative community logs
 
-SUPABASE_URL="https://xjuvryjgrjchbhjixwzh.supabase.co"
-SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqdXZyeWpncmpjaGJoaml4d3poIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDEwNjI4MywiZXhwIjoyMDg1NjgyMjgzfQ._wJgsTkz8RH3aZCyU53hPtLsNcq8zqGCE4cq8Stf75w"
+: "${SUPABASE_URL:?SUPABASE_URL must be set (source .env)}"
+: "${SUPABASE_SERVICE_ROLE_KEY:?SUPABASE_SERVICE_ROLE_KEY must be set (source .env)}"
+SUPABASE_KEY="$SUPABASE_SERVICE_ROLE_KEY"
 
 echo "🌟 Celestial Seed Import Script"
 echo "================================"
