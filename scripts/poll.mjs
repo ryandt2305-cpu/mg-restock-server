@@ -3,8 +3,19 @@ import path from "node:path";
 import process from "node:process";
 // Node 22+ has native fetch — node-fetch v3 hangs on some requests
 // import fetch from "node-fetch";
+import {
+  DEFAULT_PLATFORM_API_BASE,
+  didRestock,
+  fetchPlatformShops,
+  fetchPlatformWeather,
+} from "./lib/platformApi.mjs";
 
-const API_URL = "https://mg-api.ariedam.fr/live/shops";
+// Live shop stock + weather come from the official Magic Garden platform API
+// (replaces mg-api.ariedam.fr /live/* as of 2026-08).
+// Reference: Feeder-Extension/docs/superpowers/specs/2026-08-16-mg-platform-api-reference.md
+const PLATFORM_API_BASE = process.env.MG_PLATFORM_API_BASE || DEFAULT_PLATFORM_API_BASE;
+const API_URL = `${PLATFORM_API_BASE}/shops`;
+// mg-api is still used for static game data (/data/plants|eggs|decors) used to validate item ids.
 const MG_API_BASE = process.env.MG_API_BASE || "https://mg-api.ariedam.fr";
 const WEATHER_POLL_MS = Number(process.env.WEATHER_POLL_MS || 60000);
 
@@ -220,10 +231,15 @@ async function fetchWeatherId() {
     return cachedWeatherId;
   }
   try {
-    const res = await fetchWithTimeout(`${MG_API_BASE}/live/weather`, { headers: { "User-Agent": "Gemini-Server" } });
-    if (!res.ok) throw new Error(`MG API /live/weather failed: ${res.status}`);
-    const payload = await res.json();
-    const weatherId = normalizeWeather(payload?.weather ?? payload?.weatherId ?? payload?.weather_id ?? payload?.id ?? payload?.type ?? payload?.name);
+    // null payload => "Sunny"; unrecognised payload => null (logged so the shape can be pinned).
+    const { raw, weatherId } = await fetchPlatformWeather(PLATFORM_API_BASE, {
+      timeoutMs: FETCH_TIMEOUT_MS,
+      userAgent: "Gemini-Server/poll",
+    });
+    if (weatherId === null) {
+      console.warn("[poll] Unrecognised weather payload (pin the shape in scripts/lib/platformApi.mjs):", JSON.stringify(raw));
+      return cachedWeatherId ?? null;
+    }
     cachedWeatherId = weatherId;
     cachedWeatherAt = now;
     return weatherId;
@@ -270,24 +286,7 @@ const LEGACY_ALIASES = new Map([
   ["dawnbinder", "Dawnbinder"],
 ]);
 
-const WEATHER_ALIASES = new Map([
-  ["rain", "Rain"],
-  ["snow", "Frost"],
-  ["frost", "Frost"],
-  ["dawn", "Dawn"],
-  ["ambermoon", "AmberMoon"],
-  ["amber", "AmberMoon"],
-  ["ambermoonweather", "AmberMoon"],
-  ["clear", "Sunny"],
-  ["sunny", "Sunny"],
-]);
-
-function normalizeWeather(value) {
-  if (!value) return "Sunny";
-  const key = normalizeKey(String(value));
-  if (!key) return "Sunny";
-  return WEATHER_ALIASES.get(key) ?? "Sunny";
-}
+// Weather alias table + normalizeWeather() now live in scripts/lib/platformApi.mjs.
 
 function buildItemIndex(mgSets, nameIndex) {
   const index = { seed: new Map(), egg: new Map(), decor: new Map(), tool: new Map() };
@@ -496,20 +495,29 @@ function keyOf(shopType, itemId) {
   return `${shopType}:${itemId}`;
 }
 
-function normalizeSnapshot(snapshot) {
+/**
+ * Convert normalised platform shops (from fetchPlatformShops) into the on-disk
+ * snapshot shape. Items keep the internal `name` key (= platform `itemId`) because
+ * validateItems()/resolveItemId() operate on `item.name`.
+ */
+function normalizeSnapshot(platformShops) {
   const out = {};
   // Iterate all shop keys present in the snapshot (covers registry + newly discovered)
-  const shopKeys = new Set([...SHOP_TYPES, ...Object.keys(snapshot ?? {})]);
+  const shopKeys = new Set([...SHOP_TYPES, ...Object.keys(platformShops ?? {})]);
   for (const shopType of shopKeys) {
-    const shop = snapshot?.[shopType] ?? null;
+    const shop = platformShops?.[shopType] ?? null;
     const items = Array.isArray(shop?.items) ? shop.items : [];
     out[shopType] = {
+      open: shop?.open === true,
+      nextRestockAt: typeof shop?.nextRestockAt === "number" ? shop.nextRestockAt : null,
       secondsUntilRestock: typeof shop?.secondsUntilRestock === "number" ? shop.secondsUntilRestock : 0,
-      lastRestockAt: typeof shop?.lastRestockAt === "number" ? shop.lastRestockAt : null,
-      items: items.map((item) => ({
-        name: String(item?.name ?? ""),
-        stock: typeof item?.stock === "number" ? item.stock : 0,
-      })),
+      lastRestockAt: null, // carried forward from the previous snapshot in main()
+      items: items
+        .filter((item) => item?.itemId && item.stock > 0)
+        .map((item) => ({
+          name: String(item.itemId),
+          stock: typeof item.stock === "number" ? item.stock : 0,
+        })),
     };
   }
   return out;
@@ -526,6 +534,14 @@ function indexItems(items) {
 
 function detectRestock(prev, next, shopType) {
   if (!prev) return true;
+  // A weather-gated / event shop that just opened is always a fresh stock roll
+  // (even if it reports no nextRestockAt while open — behaviour not yet observed).
+  if (prev.open === false && next.open) return true;
+  // Primary signal (official API): the shop's nextRestockAt moved => a restock happened.
+  // Falls through to the legacy secondsUntilRestock heuristics only when either side
+  // lacks nextRestockAt (e.g. a snapshot.json written by the pre-2026-08 mg-api poller).
+  const byTimestamp = didRestock(prev.nextRestockAt ?? null, next.nextRestockAt ?? null);
+  if (byTimestamp !== null) return byTimestamp;
   const prevSec = typeof prev.secondsUntilRestock === "number" ? prev.secondsUntilRestock : 0;
   const nextSec = typeof next.secondsUntilRestock === "number" ? next.secondsUntilRestock : 0;
   if (prevSec > 0 && nextSec > prevSec + 30) return true;
@@ -616,17 +632,19 @@ async function main() {
     }
   }
 
-  console.log("Fetching live shops...");
-  const res = await fetchWithTimeout(API_URL, { headers: { "User-Agent": "Gemini-Server" } });
-  if (!res.ok) {
-    throw new Error(`Failed to fetch live shops: ${res.status}`);
-  }
-  const live = await res.json();
+  console.log("Fetching live shops (official platform API)...");
+  // fetchPlatformShops refetches (bounded) while any open shop reports nextRestockAt <= now,
+  // i.e. when we polled a few hundred ms before the server rolled the restock.
+  const { shops: live, staleRetries } = await fetchPlatformShops(PLATFORM_API_BASE, {
+    timeoutMs: FETCH_TIMEOUT_MS,
+    userAgent: "Gemini-Server/poll",
+  });
+  if (staleRetries > 0) console.log(`[poll] Refetched ${staleRetries}x waiting for restock boundary.`);
 
-  // Auto-register any new shop types discovered in the API response
+  // Auto-register any new OPEN shop types discovered in the API response
   const knownShopTypes = new Set(SHOP_TYPES);
   for (const shopType of Object.keys(live)) {
-    if (!knownShopTypes.has(shopType) && live[shopType]?.items) {
+    if (!knownShopTypes.has(shopType) && live[shopType]?.open && live[shopType].items.length > 0) {
       await registerShopType(shopType, live[shopType].secondsUntilRestock);
     }
   }
@@ -642,7 +660,8 @@ async function main() {
     return null;
   });
   const nextSnapshot = normalizeSnapshot(live);
-  const liveWeatherId = (await fetchWeatherId()) ?? normalizeWeather(live?.weather ?? live?.weatherId ?? live?.weather_id);
+  // null when the weather endpoint is unreachable/unrecognised (restock_events.weather_id is nullable).
+  const liveWeatherId = await fetchWeatherId();
   if (!mgSets || (!mgSets.seed && !mgSets.egg && !mgSets.decor && !mgSets.tool)) {
     console.warn("MGDATA validation disabled or empty; skipping item validation.");
   }
@@ -653,7 +672,10 @@ async function main() {
   for (const shopType of Object.keys(nextSnapshot)) {
     const prevShop = prevSnapshot?.[shopType] ?? null;
     const nextShop = nextSnapshot[shopType];
-    const restockByTimer = detectRestock(prevShop, nextShop, shopType);
+    // Closed (weather-gated / event) shops and empty inventories never produce events.
+    const restockByTimer = nextShop.open && nextShop.items.length > 0
+      ? detectRestock(prevShop, nextShop, shopType)
+      : false;
 
     if (restockByTimer) {
       const validatedItems = validateItems(shopType, nextShop.items, mgSets);
