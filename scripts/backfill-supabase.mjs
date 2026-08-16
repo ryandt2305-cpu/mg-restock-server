@@ -39,7 +39,27 @@ const SUPABASE_HEADERS = SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY
     }
   : null;
 
-const SHOP_TYPES = ["seed", "egg", "decor"];
+// Populated dynamically from shop_type_registry on startup.
+let SHOP_TYPES = [];
+
+async function fetchShopTypeRegistry() {
+  if (!SUPABASE_HEADERS || !SUPABASE_REST_ENDPOINT) {
+    SHOP_TYPES = ["seed", "egg", "decor", "tool", "dawn"];
+    return;
+  }
+  const res = await fetch(
+    `${SUPABASE_REST_ENDPOINT}/shop_type_registry?is_active=eq.true&select=shop_type`,
+    { headers: SUPABASE_HEADERS }
+  );
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Failed to fetch shop_type_registry: ${res.status} ${text}`);
+  }
+  const rows = await res.json();
+  SHOP_TYPES = rows.map((r) => r.shop_type);
+  console.log(`[backfill] Loaded ${rows.length} shop types from registry: ${SHOP_TYPES.join(", ")}`);
+}
+
 const MG_API_BASE = process.env.MG_API_BASE || "https://mg-api.ariedam.fr";
 const MGDATA_CACHE_FILE = path.join(DATA_DIR, "mgdata-cache.json");
 const MGDATA_CACHE_MS = Number(process.env.MGDATA_CACHE_MS || 3600000);
@@ -164,10 +184,12 @@ function toNameIndexMap(value) {
   const seedObj = value.seed && typeof value.seed === "object" ? value.seed : null;
   const eggObj = value.egg && typeof value.egg === "object" ? value.egg : null;
   const decorObj = value.decor && typeof value.decor === "object" ? value.decor : null;
+  const toolObj = value.tool && typeof value.tool === "object" ? value.tool : null;
   const seed = seedObj ? new Map(Object.entries(seedObj)) : new Map();
   const egg = eggObj ? new Map(Object.entries(eggObj)) : new Map();
   const decor = decorObj ? new Map(Object.entries(decorObj)) : new Map();
-  return { seed, egg, decor };
+  const tool = toolObj ? new Map(Object.entries(toolObj)) : new Map();
+  return { seed, egg, decor, tool };
 }
 
 function buildItemIndex(mgSets, nameIndex) {
@@ -175,8 +197,9 @@ function buildItemIndex(mgSets, nameIndex) {
     seed: new Map(),
     egg: new Map(),
     decor: new Map(),
+    tool: new Map(),
   };
-  for (const shopType of ["seed", "egg", "decor"]) {
+  for (const shopType of SHOP_TYPES) {
     const set = mgSets[shopType];
     if (!set) continue;
     for (const id of set) {
@@ -198,15 +221,18 @@ function buildMgData(mg, nameIndex) {
   const seed = mg.seed && typeof mg.seed === "object" ? mg.seed : {};
   const egg = mg.egg && typeof mg.egg === "object" ? mg.egg : {};
   const decor = mg.decor && typeof mg.decor === "object" ? mg.decor : {};
+  const tool = mg.tool && typeof mg.tool === "object" ? mg.tool : null;
   const seedSet = toNameSet(seed);
   const eggSet = toNameSet(egg);
   const decorSet = toNameSet(decor);
+  const toolSet = tool ? toNameSet(tool) : null;
   const nameIndexMap = nameIndex ? toNameIndexMap(nameIndex) : null;
   return {
     seed: seedSet,
     egg: eggSet,
     decor: decorSet,
-    index: buildItemIndex({ seed: seedSet, egg: eggSet, decor: decorSet }, nameIndexMap),
+    tool: toolSet,
+    index: buildItemIndex({ seed: seedSet, egg: eggSet, decor: decorSet, tool: toolSet }, nameIndexMap),
     nameIndex: nameIndexMap,
   };
 }
@@ -219,10 +245,11 @@ async function loadMgData() {
     }
   }
 
-  const [plantsRes, eggsRes, decorsRes] = await Promise.all([
+  const [plantsRes, eggsRes, decorsRes, toolsRes] = await Promise.all([
     fetchWithTimeout(`${MG_API_BASE}/data/plants`, { headers: { "User-Agent": "Gemini-Server" } }),
     fetchWithTimeout(`${MG_API_BASE}/data/eggs`, { headers: { "User-Agent": "Gemini-Server" } }),
     fetchWithTimeout(`${MG_API_BASE}/data/decors`, { headers: { "User-Agent": "Gemini-Server" } }),
+    fetchWithTimeout(`${MG_API_BASE}/data/tools`, { headers: { "User-Agent": "Gemini-Server" } }).catch(() => null),
   ]);
   if (!plantsRes.ok || !eggsRes.ok || !decorsRes.ok) {
     throw new Error("MG API data fetch failed");
@@ -232,9 +259,16 @@ async function loadMgData() {
     eggsRes.json(),
     decorsRes.json(),
   ]);
+  let tools = null;
+  if (toolsRes && toolsRes.ok) {
+    tools = await toolsRes.json();
+  } else if (toolsRes && toolsRes.status !== 404) {
+    console.warn(`[backfill] /data/tools fetch failed with ${toolsRes.status}; skipping tool validation.`);
+  }
   const seedNames = new Map();
   const eggNames = new Map();
   const decorNames = new Map();
+  const toolNames = new Map();
   for (const [id, value] of Object.entries(plants ?? {})) {
     const seedName = value?.seed?.name;
     if (seedName) seedNames.set(normalizeKey(seedName), id);
@@ -247,11 +281,21 @@ async function loadMgData() {
     const decorName = value?.name;
     if (decorName) decorNames.set(normalizeKey(decorName), id);
   }
-  const nameIndex = { seed: Object.fromEntries(seedNames), egg: Object.fromEntries(eggNames), decor: Object.fromEntries(decorNames) };
+  for (const [id, value] of Object.entries(tools ?? {})) {
+    const toolName = value?.name;
+    if (toolName) toolNames.set(normalizeKey(toolName), id);
+  }
+  const nameIndex = {
+    seed: Object.fromEntries(seedNames),
+    egg: Object.fromEntries(eggNames),
+    decor: Object.fromEntries(decorNames),
+    tool: Object.fromEntries(toolNames),
+  };
   const data = {
     seed: plants && typeof plants === "object" ? Object.keys(plants) : [],
     egg: eggs && typeof eggs === "object" ? Object.keys(eggs) : [],
     decor: decors && typeof decors === "object" ? Object.keys(decors) : [],
+    ...(tools && typeof tools === "object" ? { tool: Object.keys(tools) } : {}),
   };
   writeJson(MGDATA_CACHE_FILE, { savedAt: Date.now(), data, nameIndex });
   return buildMgData(data, nameIndex);
@@ -259,7 +303,14 @@ async function loadMgData() {
 
 function resolveItemId(shopType, rawName, mgSets) {
   if (!mgSets) return rawName;
-  const set = shopType === "seed" ? mgSets.seed : shopType === "egg" ? mgSets.egg : mgSets.decor;
+  const set = shopType === "seed"
+    ? mgSets.seed
+    : shopType === "egg"
+      ? mgSets.egg
+      : shopType === "tool"
+        ? (mgSets.tool ?? null)
+        : mgSets.decor;
+  if (shopType === "tool" && (!set || set.size === 0)) return rawName;
   if (set && set.has(rawName)) return rawName;
   const idx = mgSets.index?.[shopType];
   if (!idx) return null;
@@ -300,6 +351,10 @@ function inferShopType(rawName, mgSets) {
   if (egg) return "egg";
   const decor = resolveItemId("decor", rawName, mgSets);
   if (decor) return "decor";
+  if (mgSets.tool && mgSets.tool.size > 0) {
+    const tool = resolveItemId("tool", rawName, mgSets);
+    if (tool) return "tool";
+  }
   return null;
 }
 
@@ -393,6 +448,7 @@ function makeFingerprint(ev) {
 }
 
 async function main() {
+  await fetchShopTypeRegistry();
   const mgSets = await loadMgData();
   if (fs.existsSync(MGDATA_CACHE_FILE)) {
     console.log("MGDATA cache reset to include name index");

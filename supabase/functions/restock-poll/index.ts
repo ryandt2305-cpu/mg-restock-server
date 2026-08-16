@@ -15,18 +15,15 @@ const POLL_SECRET = Deno.env.get("POLL_SECRET") ?? "";
 const MG_API_BASE = Deno.env.get("MG_API_BASE") ?? "https://mg-api.ariedam.fr";
 const FETCH_TIMEOUT_MS = Number(Deno.env.get("FETCH_TIMEOUT_MS") ?? 15000);
 
-type ShopType = "seed" | "egg" | "decor";
 type ShopItem = { name: string; stock: number };
 type ShopData = { secondsUntilRestock: number; items: ShopItem[] };
 type LiveShopsResponse = Record<string, ShopData>;
 
-const SHOP_INTERVALS: Record<ShopType, number> = {
-  seed: 300000,   // 5 minutes
-  egg: 900000,    // 15 minutes
-  decor: 3600000, // 60 minutes
+type RegistryEntry = {
+  shop_type: string;
+  cycle_interval_ms: number;
+  config: Record<string, unknown>;
 };
-
-const TRACKED_SHOPS: ShopType[] = ["seed", "egg", "decor"];
 
 // Maps the live API weather display string to the game enum ID stored in weather_events.
 // "Clear Skies" is the API's string for no active special weather.
@@ -50,9 +47,32 @@ const VALID_WEATHER_IDS: ReadonlySet<string> = new Set([
 // Weather events are snapped to 5-minute slots (matching Rain's event duration).
 const WEATHER_SNAP_INTERVAL = 300_000;
 
-function snapTimestamp(shopType: ShopType, ts: number): number {
-  const interval = SHOP_INTERVALS[shopType];
-  return Math.floor(ts / interval) * interval;
+function snapTimestamp(intervalMs: number, ts: number): number {
+  return Math.floor(ts / intervalMs) * intervalMs;
+}
+
+/** Round cycle estimate up to nearest minute boundary (min 60s). */
+function roundToMinuteBoundary(ms: number): number {
+  const minute = 60_000;
+  return Math.max(minute, Math.ceil(ms / minute) * minute);
+}
+
+async function fetchRegistry(client: ReturnType<typeof getClient>): Promise<Map<string, RegistryEntry>> {
+  const { data, error } = await client
+    .from("shop_type_registry")
+    .select("shop_type, cycle_interval_ms, config")
+    .eq("is_active", true);
+
+  if (error) {
+    console.error("Failed to fetch shop_type_registry:", error.message);
+    return new Map();
+  }
+
+  const map = new Map<string, RegistryEntry>();
+  for (const row of data ?? []) {
+    map.set(row.shop_type, row as RegistryEntry);
+  }
+  return map;
 }
 
 function makeFingerprint(shopType: string, snappedTs: number, items: { itemId: string; stock: number }[]): string {
@@ -125,16 +145,47 @@ serve(async (req) => {
     const now = Date.now();
     const inserted: string[] = [];
     const skipped: string[] = [];
+    const registered: string[] = [];
+
+    // Resolve weather ID before the shop loop so it's available for both
+    // restock_events inserts and ingest_restock_history RPC calls.
+    const weatherId = LIVE_WEATHER_ID_MAP[rawWeatherString] ?? null;
+
+    // ── Registry lookup ─────────────────────────────────────────────────
+    const registry = await fetchRegistry(client);
 
     // ── Shop inventory ────────────────────────────────────────────────────
-    for (const shopType of TRACKED_SHOPS) {
+    // Iterate ALL shop keys from the API, not a hardcoded list.
+    for (const shopType of Object.keys(shops)) {
       const shopData = shops[shopType];
       if (!shopData || !Array.isArray(shopData.items) || shopData.items.length === 0) {
         skipped.push(shopType);
         continue;
       }
 
-      const snappedTs = snapTimestamp(shopType, now);
+      // Auto-register unknown shop types using secondsUntilRestock as cycle estimate
+      let entry = registry.get(shopType);
+      if (!entry) {
+        const estimatedMs = shopData.secondsUntilRestock
+          ? roundToMinuteBoundary(shopData.secondsUntilRestock * 1000)
+          : 300_000;
+        const { error: regErr } = await client.rpc("register_shop_type", {
+          p_shop_type: shopType,
+          p_cycle_interval_ms: estimatedMs,
+          p_discovered_from: "restock-poll-auto",
+        });
+        if (regErr) {
+          console.error(`Failed to register shop type "${shopType}":`, regErr.message);
+          skipped.push(shopType);
+          continue;
+        }
+        entry = { shop_type: shopType, cycle_interval_ms: estimatedMs, config: {} };
+        registry.set(shopType, entry);
+        registered.push(shopType);
+      }
+
+      const intervalMs = entry.cycle_interval_ms;
+      const snappedTs = snapTimestamp(intervalMs, now);
 
       const items = shopData.items
         .filter((item) => item.name && item.stock > 0)
@@ -155,6 +206,7 @@ serve(async (req) => {
           items: items,
           source: "mg-api",
           fingerprint,
+          weather_id: weatherId ?? null,
         })
         .select("id")
         .maybeSingle();
@@ -174,10 +226,19 @@ serve(async (req) => {
         continue;
       }
 
+      // For egg shops, pass 5-minute resolution so ingest_restock_history
+      // can distinguish weather-locked egg restocks (SnowEgg, DawnEgg)
+      // that happen every 5 min. Non-weather-locked eggs are re-snapped
+      // to 15 min inside the function via restock_item_snap_timestamp.
+      const ingestTs = shopType === "egg"
+        ? Math.floor(now / 300_000) * 300_000
+        : snappedTs;
+
       const { error: historyErr } = await client.rpc("ingest_restock_history", {
         p_shop_type: shopType,
-        p_ts: snappedTs,
+        p_ts: ingestTs,
         p_items: items,
+        p_weather_id: weatherId ?? null,
       });
 
       if (historyErr) {
@@ -188,11 +249,9 @@ serve(async (req) => {
     }
 
     // ── Weather recording ─────────────────────────────────────────────────
-    // Map the live API weather string to the game enum ID.
     // Insert one weather event per 5-minute slot. Fingerprint deduplication
     // prevents duplicates if the same weather is polled multiple times in a slot.
     // After any new insert, rebuild weather_history so weather_predictions stays fresh.
-    const weatherId = LIVE_WEATHER_ID_MAP[rawWeatherString] ?? null;
     let weatherInserted = false;
 
     if (weatherId && VALID_WEATHER_IDS.has(weatherId)) {
@@ -223,6 +282,7 @@ serve(async (req) => {
       ok: true,
       inserted,
       skipped,
+      registered,
       timestamp: now,
       weather: { id: weatherId, raw: rawWeatherString, inserted: weatherInserted },
     }, 200, req);

@@ -1,5 +1,8 @@
 {
   "name": "gemini-shop-history",
+  "version": "1.0.0",
+  "description": "Restock and weather data pipeline for Magic Garden",
+  "license": "MIT",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,7 +12,10 @@
     "import:json": "node scripts/import-json.mjs",
     "import:magicshopkeeper": "node scripts/import-magicshopkeeper.mjs",
     "backfill:supabase": "node scripts/backfill-supabase.mjs",
+    "backfill:gap-window": "node scripts/backfill-gap-window.mjs",
     "clean:supabase": "node scripts/clean-supabase.mjs",
+    "restock:weather-diagnostics": "node scripts/restock-weather-diagnostics.mjs",
+    "restock:backtest-summary": "node scripts/restock-backtest-summary.mjs",
     "seed": "npx tsx scripts/seed-magicshopkeeper.ts"
   },
   "dependencies": {

@@ -45,7 +45,7 @@ const SUPABASE_HEADERS = SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY
     }
   : null;
 
-const SHOP_TYPES = ["seed", "egg", "decor"];
+const SHOP_TYPES = ["seed", "egg", "decor", "tool"];
 
 function readJson(file, fallback) {
   try {
@@ -140,7 +140,7 @@ function normalizeWeather(value) {
 }
 
 function buildItemIndex(mgSets, nameIndex) {
-  const index = { seed: new Map(), egg: new Map(), decor: new Map() };
+  const index = { seed: new Map(), egg: new Map(), decor: new Map(), tool: new Map() };
   for (const shopType of SHOP_TYPES) {
     const set = mgSets[shopType];
     if (!set) continue;
@@ -163,10 +163,12 @@ function toNameIndexMap(value) {
   const seedObj = value.seed && typeof value.seed === "object" ? value.seed : null;
   const eggObj = value.egg && typeof value.egg === "object" ? value.egg : null;
   const decorObj = value.decor && typeof value.decor === "object" ? value.decor : null;
+  const toolObj = value.tool && typeof value.tool === "object" ? value.tool : null;
   const seed = seedObj ? new Map(Object.entries(seedObj)) : new Map();
   const egg = eggObj ? new Map(Object.entries(eggObj)) : new Map();
   const decor = decorObj ? new Map(Object.entries(decorObj)) : new Map();
-  return { seed, egg, decor };
+  const tool = toolObj ? new Map(Object.entries(toolObj)) : new Map();
+  return { seed, egg, decor, tool };
 }
 
 function buildMgData(mg, nameIndex) {
@@ -174,15 +176,18 @@ function buildMgData(mg, nameIndex) {
   const seed = mg.seed && typeof mg.seed === "object" ? mg.seed : {};
   const egg = mg.egg && typeof mg.egg === "object" ? mg.egg : {};
   const decor = mg.decor && typeof mg.decor === "object" ? mg.decor : {};
+  const tool = mg.tool && typeof mg.tool === "object" ? mg.tool : null;
   const seedSet = toNameSet(seed);
   const eggSet = toNameSet(egg);
   const decorSet = toNameSet(decor);
+  const toolSet = tool ? toNameSet(tool) : null;
   const nameIndexMap = nameIndex ? toNameIndexMap(nameIndex) : null;
   return {
     seed: seedSet,
     egg: eggSet,
     decor: decorSet,
-    index: buildItemIndex({ seed: seedSet, egg: eggSet, decor: decorSet }, nameIndexMap),
+    tool: toolSet,
+    index: buildItemIndex({ seed: seedSet, egg: eggSet, decor: decorSet, tool: toolSet }, nameIndexMap),
     nameIndex: nameIndexMap,
   };
 }
@@ -195,10 +200,11 @@ async function loadMgData() {
     }
   }
 
-  const [plantsRes, eggsRes, decorsRes] = await Promise.all([
+  const [plantsRes, eggsRes, decorsRes, toolsRes] = await Promise.all([
     fetchWithTimeout(`${MG_API_BASE}/data/plants`, { headers: { "User-Agent": "Gemini-Server" } }),
     fetchWithTimeout(`${MG_API_BASE}/data/eggs`, { headers: { "User-Agent": "Gemini-Server" } }),
     fetchWithTimeout(`${MG_API_BASE}/data/decors`, { headers: { "User-Agent": "Gemini-Server" } }),
+    fetchWithTimeout(`${MG_API_BASE}/data/tools`, { headers: { "User-Agent": "Gemini-Server" } }).catch(() => null),
   ]);
   if (!plantsRes.ok || !eggsRes.ok || !decorsRes.ok) {
     throw new Error("MG API data fetch failed");
@@ -208,9 +214,16 @@ async function loadMgData() {
     eggsRes.json(),
     decorsRes.json(),
   ]);
+  let tools = null;
+  if (toolsRes && toolsRes.ok) {
+    tools = await toolsRes.json();
+  } else if (toolsRes && toolsRes.status !== 404) {
+    console.warn(`[clean] /data/tools fetch failed with ${toolsRes.status}; skipping tool validation.`);
+  }
   const seedNames = new Map();
   const eggNames = new Map();
   const decorNames = new Map();
+  const toolNames = new Map();
   for (const [id, value] of Object.entries(plants ?? {})) {
     const seedName = value?.seed?.name;
     if (seedName) seedNames.set(normalizeKey(seedName), id);
@@ -223,11 +236,21 @@ async function loadMgData() {
     const decorName = value?.name;
     if (decorName) decorNames.set(normalizeKey(decorName), id);
   }
-  const nameIndex = { seed: Object.fromEntries(seedNames), egg: Object.fromEntries(eggNames), decor: Object.fromEntries(decorNames) };
+  for (const [id, value] of Object.entries(tools ?? {})) {
+    const toolName = value?.name;
+    if (toolName) toolNames.set(normalizeKey(toolName), id);
+  }
+  const nameIndex = {
+    seed: Object.fromEntries(seedNames),
+    egg: Object.fromEntries(eggNames),
+    decor: Object.fromEntries(decorNames),
+    tool: Object.fromEntries(toolNames),
+  };
   const data = {
     seed: plants && typeof plants === "object" ? Object.keys(plants) : [],
     egg: eggs && typeof eggs === "object" ? Object.keys(eggs) : [],
     decor: decors && typeof decors === "object" ? Object.keys(decors) : [],
+    ...(tools && typeof tools === "object" ? { tool: Object.keys(tools) } : {}),
   };
   writeJson(MGDATA_CACHE_FILE, { savedAt: Date.now(), data, nameIndex });
   return buildMgData(data, nameIndex);
@@ -235,7 +258,14 @@ async function loadMgData() {
 
 function resolveItemId(shopType, rawName, mgSets) {
   if (!mgSets) return rawName;
-  const set = shopType === "seed" ? mgSets.seed : shopType === "egg" ? mgSets.egg : mgSets.decor;
+  const set = shopType === "seed"
+    ? mgSets.seed
+    : shopType === "egg"
+      ? mgSets.egg
+      : shopType === "tool"
+        ? (mgSets.tool ?? null)
+        : mgSets.decor;
+  if (shopType === "tool" && (!set || set.size === 0)) return rawName;
   if (set && set.has(rawName)) return rawName;
   const idx = mgSets.index?.[shopType];
   if (!idx) return null;
@@ -276,6 +306,10 @@ function inferShopType(rawName, mgSets) {
   if (egg) return "egg";
   const decor = resolveItemId("decor", rawName, mgSets);
   if (decor) return "decor";
+  if (mgSets.tool && mgSets.tool.size > 0) {
+    const tool = resolveItemId("tool", rawName, mgSets);
+    if (tool) return "tool";
+  }
   return null;
 }
 
