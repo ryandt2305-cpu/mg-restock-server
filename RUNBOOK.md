@@ -73,8 +73,13 @@ select public.rebuild_weather_summary();
 
 ### restock_events.weather_id is null
 - Ensure `scripts/poll.mjs` is updated
-- Verify `/live/weather` reachable
+- Verify `https://magicgarden.gg/platform/v1/weather` returns 200 (`null` body is normal = Sunny)
 - Run `npm run poll` once
+
+### restock_events stopped arriving after a game update
+- `curl https://magicgarden.gg/platform/v1/shops | head -c 300` — must be `{"shops":{...}}` with `open`, `nextRestockAt`, `items[].itemId`.
+- Check edge-function logs for `Unrecognised weather payload` (weather shape changed) or `still pre-restock` (API lag).
+- Run `npm test` and `npx -y deno@2.9.5 test supabase/functions/_shared/` after adjusting `platformApi.{mjs,ts}`; redeploy `restock-poll`.
 
 ### Weather predictions look wrong
 - Run `select public.rebuild_weather_summary();`

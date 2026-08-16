@@ -1,7 +1,7 @@
 # Gemini-server
 
 ## TL;DR
-Server-side pipeline for ingesting live shop data and weather history from mg-api and Discord, normalizing it, and persisting to Supabase.
+Server-side pipeline for ingesting live shop data and weather from the official Magic Garden platform API (`magicgarden.gg/platform/v1`), plus legacy Discord history, normalizing it, and persisting to Supabase.
 
 ## Architecture type
 Node.js scripts (no framework) — Supabase as data store
@@ -16,6 +16,7 @@ Node.js scripts (no framework) — Supabase as data store
 
 ## Repo map
 - `scripts/` — all pipeline scripts (polling, importing, backfilling)
+- `scripts/lib/platformApi.mjs` / `supabase/functions/_shared/platformApi.ts` — official platform API client (keep in sync)
 - No `src/` directory
 
 ## Related repos
