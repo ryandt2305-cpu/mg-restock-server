@@ -17,5 +17,12 @@ supabase/.temp/
 # superpowers session artifacts (local only, never push)
 docs/superpowers/
 
+# local scratch dir (npm cache etc.)
+.tmp/
+
+# large regenerable exports (produced by scripts/export-events.mjs, scripts/backfill-gap-window.mjs)
+data/export-*.json
+data/*.preview.json
+
 # keep data + scripts + workflow + package files tracked
 
