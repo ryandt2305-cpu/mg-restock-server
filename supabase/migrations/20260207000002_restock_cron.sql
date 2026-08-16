@@ -14,7 +14,11 @@ SELECT cron.schedule(
   SELECT net.http_post(
     url := 'https://xjuvryjgrjchbhjixwzh.supabase.co/functions/v1/restock-poll',
     headers := jsonb_build_object(
-      'Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqdXZyeWpncmpjaGJoaml4d3poIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDEwNjI4MywiZXhwIjoyMDg1NjgyMjgzfQ._wJgsTkz8RH3aZCyU53hPtLsNcq8zqGCE4cq8Stf75w',
+      -- SECURITY: original service_role JWT was rotated 2026-08-16. This migration is
+      -- superseded by 20260207000004_security_hardening.sql, which drops this cron job
+      -- and re-creates it reading the shared secret from Supabase Vault. The literal
+      -- token here is redacted so it cannot be re-exposed by rerunning this file.
+      'Authorization', 'Bearer <REDACTED_ROTATED_2026-08-16>',
       'Content-Type', 'application/json'
     ),
     body := '{}'::jsonb
