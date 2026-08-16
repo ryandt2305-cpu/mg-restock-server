@@ -11,9 +11,10 @@ cd C:\Users\ryand\Feeder-Extension\Gemini-folder\Gemini-server
 # IMPORTANT: Use --no-verify-jwt to allow anon key requests
 supabase functions deploy restock-history --no-verify-jwt
 
-# Verify deployment
+# Verify deployment (replace YOUR_PUBLISHABLE_KEY with the current sb_publishable_... key
+# from Supabase Dashboard → Project Settings → API Keys)
 curl -X GET "https://xjuvryjgrjchbhjixwzh.supabase.co/functions/v1/restock-history" \
-  -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqdXZyeWpncmpjaGJoaml4d3poIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAxMDYyODMsImV4cCI6MjA4NTY4MjI4M30.MqQCBG-UMR4HYJU44Tz2orHUj9gMgJTMJtxpb_MHeps" \
+  -H "apikey: YOUR_PUBLISHABLE_KEY" \
   -H "Origin: https://mg-tokyo.github.io"
 ```
 
